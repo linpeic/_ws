@@ -10,10 +10,10 @@ app.use((ctx) => {
   if (pathname == '/name') {
     ctx.response.body = '姓名：林沛欣'
   } 
-  if(pathname == '/age'){
+  else if(pathname == '/age'){
     ctx.response.body = '年齡：19'
   }
-  if(pathname == '/gender'){
+  else if(pathname == '/gender'){
     ctx.response.body = '性別：女'
   }
   else{
