@@ -14,6 +14,7 @@ app.use((ctx) => {
 <li><a href='/name'>名字<a></li>
 <li><a href='/age'>年齡<a></li>
 <li><a href='/gender'>性別<a></li>
+<li><a href='/music'>音樂<a></li>
 </ol>
 </body>
 </html>
@@ -24,6 +25,8 @@ app.use((ctx) => {
     ctx.response.body = '19'
   } else if (pathname == '/gender') {
     ctx.response.body = '女'
+  } else if (pathname == '/music') {
+    ctx.response.body = ''
   } 
   // ctx.response.body = 'Not Found!'
 });
