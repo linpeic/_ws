@@ -6,7 +6,7 @@ app.use((ctx) => {
   // ctx.response.status = 404
   console.log('url=', ctx.request.url)
   let pathname = ctx.request.url.pathname
-  if(pathname == ' '){
+  if(pathname == 'http://127.0.0.1:8000'){
     ctx.response.body = '找不到找不到找不到找不到找不到找不到'
   }
   if (pathname == '/name') {
