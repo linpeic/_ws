@@ -1,17 +1,21 @@
 import { Application, Router } from "https://deno.land/x/oak/mod.ts";
 import * as render from './render.js'
 
+
 const posts = [
-  {id:0, title:'first', body:'fffff'},
-  {id:1, title:'second', body:'ssss'}
+  {id:0, title:'first post', body:'welcome!!!'},
+  {id:1, title:'second post', body:'hello world!!!'}
 ];
 
 const router = new Router();
 
+
+
 router.get('/', list)
   .get('/post/new', add)
   .get('/post/:id', show)
-  .get('/post', create);
+  .get('/post/day',day)
+  .post('/post', create);
 
 const app = new Application();
 app.use(router.routes());
@@ -25,6 +29,14 @@ async function add(ctx) {
   ctx.response.body = await render.newPost();
 }
 
+async function day(ctx) {
+    ctx.response.body = await render.newPost();
+    const ti=Date.now();
+let t=new Date(ti);
+let b=t.toUTCString();
+console.log(b);
+  }
+
 async function show(ctx) {
   const id = ctx.params.id;
   const post = posts[id];
@@ -33,7 +45,6 @@ async function show(ctx) {
 }
 
 async function create(ctx) {
-  /*
   const body = ctx.request.body
   if (body.type() === "form") {
     const pairs = await body.form() // body.value
@@ -47,15 +58,10 @@ async function create(ctx) {
     post.id = id;
     ctx.response.redirect('/');
   }
-  */
-  var params = ctx.request.url.searchParams
-  var title = params.get('title')
-  var body = params.get('body')
-  var post = {title:title, body:body}
-  console.log('post=', post)
-  const id = posts.push(post) - 1;
-  post.created_at = new Date();
-  post.id = id;
-  ctx.response.body = "success"
-  ctx.response.redirect('/');
+  
 }
+
+
+
+console.log('Server run at http://127.0.0.1:8000')
+await app.listen({ port: 8000 });
