@@ -1,16 +1,12 @@
 import { Application, Router } from "https://deno.land/x/oak/mod.ts";
 import * as render from './render.js'
 
-
 const posts = [
   {id:0, title:'first post', body:'welcome!!!'},
   {id:1, title:'second post', body:'hello world!!!'}
 ];
 
 const router = new Router();
-
-
-
 router.get('/', list)
   .get('/post/new', add)
   .get('/post/:id', show)
@@ -29,19 +25,19 @@ async function add(ctx) {
   ctx.response.body = await render.newPost();
 }
 
-async function day(ctx) {
-    ctx.response.body = await render.newPost();
-    const ti=Date.now();
-let t=new Date(ti);
-let b=t.toUTCString();
-console.log(b);
-  }
-
 async function show(ctx) {
   const id = ctx.params.id;
   const post = posts[id];
   if (!post) ctx.throw(404, 'invalid post id');
   ctx.response.body = await render.show(post);
+}
+
+async function day(ctx) {
+  ctx.response.body = await render.newPost();
+  const ti=Date.now();
+  let t=new Date(ti);
+  let b=t.toUTCString();
+  console.log(b);
 }
 
 async function create(ctx) {
@@ -58,10 +54,6 @@ async function create(ctx) {
     post.id = id;
     ctx.response.redirect('/');
   }
-  
 }
-
-
-
 console.log('Server run at http://127.0.0.1:8000')
 await app.listen({ port: 8000 });
