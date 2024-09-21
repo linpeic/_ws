@@ -10,7 +10,6 @@ const router = new Router();
 router.get('/', list)
   .get('/post/new', add)
   .get('/post/:id', show)
-  .get('/post/day',day)
   .post('/post', create);
 
 const app = new Application();
@@ -32,13 +31,6 @@ async function show(ctx) {
   ctx.response.body = await render.show(post);
 }
 
-async function day(ctx) {
-  ctx.response.body = await render.newPost();
-  const ti=Date.now();
-  let t=new Date(ti);
-  let b=t.toUTCString();
-  console.log(b);
-}
 
 async function create(ctx) {
   const body = ctx.request.body
@@ -52,6 +44,7 @@ async function create(ctx) {
     const id = posts.push(post) - 1;
     post.created_at = new Date();
     post.id = id;
+   
     ctx.response.redirect('/');
   }
 }
