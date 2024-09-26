@@ -100,5 +100,6 @@ export function show(post) {
   return layout(post.title, `
     <h1>${post.title}</h1>
     <pre>${post.body}</pre>
+    <pre>時間： ${post.created_at}</pre>
   `)
 }

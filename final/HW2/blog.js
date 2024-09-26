@@ -2,8 +2,9 @@ import { Application, Router } from "https://deno.land/x/oak/mod.ts";
 import * as render from './render.js'
 
 const posts = [
-  {id:0, title:'first post', body:'welcome!!!'},
-  {id:1, title:'second post', body:'hello world!!!'}
+  {id:0, title:'First post', body:'welcome!!!',created_at:new Date().toLocaleString()},
+  {id:1, title:'Second post', body:'hello world!!!',created_at:new Date().toISOString()},
+  {id:2, title:'Third post', body:'hey hello!!',created_at:new Date().toUTCString()}
 ];
 
 const router = new Router();
@@ -42,9 +43,11 @@ async function create(ctx) {
     }
     console.log('post=', post)
     const id = posts.push(post) - 1;
-    post.created_at = new Date();
+    post.created_at =new Date();
     post.id = id;
-   
+    /*const ti=Date.now();
+    let t=new Date(ti);
+    post.a=ti.toLocaleString();*/
     ctx.response.redirect('/');
   }
 }
