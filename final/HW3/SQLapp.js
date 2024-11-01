@@ -1,5 +1,5 @@
 import { Application, Router } from "https://deno.land/x/oak/mod.ts";
-import * as render from './render.js'
+import * as render from './SQLrender.js'
 import { DB } from "https://deno.land/x/sqlite/mod.ts";
 
 const db = new DB("blog.db");
@@ -57,6 +57,6 @@ async function create(ctx) {
   }
 }
 
-let port = parseInt(Deno.args[0])
+const port = 8000;
 console.log(`Server run at http://127.0.0.1:${port}`)
 await app.listen({ port });
