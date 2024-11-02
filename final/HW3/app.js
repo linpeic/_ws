@@ -17,29 +17,29 @@ const app = new Application();
 app.use(router.routes());
 app.use(router.allowedMethods());
 
-function query(sql) {
+function query(sql,args=[]) {
   let list = []
-  for (const [id,user, title, body] of db.query(sql)) {
+  for (const [id,user, title, body] of db.query(sql,args)) {
     list.push({id,user, title, body})
   }
   return list
 }
 
 async function userList(ctx) {
-  let posts = query("SELECT user FROM posts")
-  ctx.response.body = await render.userList(Object.keys(posts))
+  let users = query(`SELECT DISTINCT user FROM posts`);
+  ctx.response.body = await render.userList(users)
 }
 
 async function list(ctx) {
   const user = ctx.params.user; // 取得路由參數中的 user
   console.log('user=', user)
-  let posts = query("SELECT id,user, title, body FROM posts")
-  if (!posts[user]) {
-    posts[user] = []; // 若用戶的貼文列表不存在，則初始化為空陣列
-  }
-  console.log('posts[user]=', posts[user])
+  let posts = query(`SELECT id, user, title, body FROM posts WHERE user = ?`, [user]);// let posts = query(`SELECT id,user, title, body FROM posts`)
+  // if (!posts[user]) {
+  //   posts[user] = []; // 若用戶的貼文列表不存在，則初始化為空陣列
+  // }
+  // console.log('posts[user]=', posts[user])
   console.log('list:posts=', posts)
-  ctx.response.body = await render.list(user, posts[user]); // 顯示該用戶的貼文
+  ctx.response.body = await render.list(user, posts); // 顯示該用戶的貼文
 }
 
 async function add(ctx) {
@@ -59,7 +59,7 @@ async function show(ctx) {
 }
 
 async function create(ctx) {
-  const user =ctx. params.user;
+  const user =ctx. params.user ||'joo';
   const body = ctx.request.body
   if (body.type() === "form") {
     const pairs = await body.form()
@@ -67,11 +67,15 @@ async function create(ctx) {
     for (const [key, value] of pairs) {
       post[key] = value
     }
+    let posts=query(`SELECT id,user, title, body FROM posts WHERE user=?`,[user])
+    if (!posts[user]) {
+      posts[user] = []; // 若用戶的貼文列表不存在，則初始化為空陣列
+    }
     console.log('create:post=', post)
-    db.query("INSERT INTO posts (user,title, body) VALUES (?,?, ?)", user,[post.title, post.body]);
-    ctx.response.redirect('/${user}/');
+    db.query("INSERT INTO posts (user,title, body) VALUES (?,?,?)", [user,post.title, post.body]);
+    ctx.response.redirect(`/${user}/`); 
   }
 }
 
-console.log(`Server run at http://127.0.0.1:8000`)
-await app.listen(8000);
+console.log('Server running at http://127.0.0.1:8000');
+await app.listen({ port: 8000 });

@@ -56,19 +56,19 @@ export function layout(user,title, content) {
   </head>
   <body>
     <section id="content">
-    <h1>使用者:${user}</h1>
+    <h1>使用者您好</h1>
       ${content}
     </section>
   </body>
   </html>
   `
 }
-export function userList(posts) {
+export function userList(users) {
   let listHtml = []
-  for (let user of posts) {
+  for (let user of users) {
       listHtml.push(`<li><a href="/${user}/">${user}</a></li>`)
   }
-  return layout('', 'User List', `<ol>${listHtml.join('\n')}</ol>`,posts)
+  return layout('', 'User List', `<ol>${listHtml.join('\n')}</ol>`,users)
 }
 
 export function list(user,posts) {
@@ -108,5 +108,6 @@ export function show(user,post) {
   return layout(user,post.title, `
     <h1>${post.title}</h1>
     <p>${post.body}</p>
+   
   `)
 }
