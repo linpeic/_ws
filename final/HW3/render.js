@@ -56,7 +56,7 @@ export function layout(user,title, content) {
   </head>
   <body>
     <section id="content">
-    <h1>使用者您好</h1>
+    <h1>使用者${user}您好</h1>
       ${content}
     </section>
   </body>
