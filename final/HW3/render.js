@@ -68,7 +68,8 @@ export function userList(users) {
   for (let user of users) {
       listHtml.push(`<li><a href="/${user}/">${user}</a></li>`)
   }
-  return layout('', 'User List', `<ol>${listHtml.join('\n')}</ol>`,users)
+  // return layout('', 'User List', `<ol>${listHtml.join('\n')}</ol>`,users)
+  return layout('', 'User List', `<ol>${listHtml.join('\n')}</ol>`)
 }
 
 export function list(user,posts) {
