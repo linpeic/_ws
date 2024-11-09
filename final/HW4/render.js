@@ -76,7 +76,6 @@ export function listUserPosts(posts, user,allposts) {
     </li>
     `)
   }
-  // if()
   for (let apost of allposts) {
     if(user===apost.username){
     list.push(`
