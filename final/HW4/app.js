@@ -18,6 +18,8 @@ router.get('/', list)
   .get('/post/new', add)
   .get('/post/:id', show)
   .post('/post', create)
+  .get('/list/:user', listUserPosts) 
+  
 
 const app = new Application()
 app.use(Session.initMiddleware())
@@ -107,10 +109,27 @@ async function logout(ctx) {
    ctx.response.redirect('/')
 }
 
+
+
 async function list(ctx) {
   let posts = postQuery("SELECT id, username, title, body FROM posts")
   console.log('list:posts=', posts)
   ctx.response.body = await render.list(posts, await ctx.state.session.get('user'));
+}
+
+async function listUserPosts(ctx){
+  const user =ctx.params.user
+  console.log("listuserposts:hihi")
+  let posts = postQuery(`SELECT id, username, title, body FROM posts WHERE username = ?`, [user]);
+  
+  let allposts = postQuery("SELECT id, username, title, body FROM posts")
+  
+  console.log('list:posts=', posts)
+  
+  if (!posts[user]) {
+    posts[user] = []; // 若用戶的貼文列表不存在，則初始化為空陣列
+  }
+  ctx.response.body = await render.listUserPosts(posts,user,allposts)
 }
 
 async function add(ctx) {
@@ -146,6 +165,8 @@ async function create(ctx) {
     ctx.response.redirect('/');
   }
 }
+
+
 
 console.log('Server run at http://127.0.0.1:8000')
 await app.listen({ port: 8000 });

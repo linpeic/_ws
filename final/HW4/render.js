@@ -16,6 +16,9 @@ export function layout(title, content) {
       h2 {
         font-size: 1.2em;
       }
+      h3 {
+        font-size: 1em;
+      }
   
       #posts {
         margin: 0;
@@ -62,6 +65,38 @@ export function layout(title, content) {
   </html>
   `
 }
+export function listUserPosts(posts, user,allposts) {
+  console.log('listUserPost: user=', user)
+  let list = []
+  for (let post of posts) {
+    list.push(`
+    <li>
+      <h2>${ post.title } -- by ${post.username}</h2>
+      <p><a href="/post/${post.id}">Read post</a></p>
+    </li>
+    `)
+  }
+  // if()
+  for (let apost of allposts) {
+    if(user===apost.username){
+    list.push(`
+    <li>
+      <h3>${apost.title} -- by ${apost.username}</h3>
+      <p>${apost.body}</p>
+    </li>
+    `)
+    }
+  }
+  let content = `
+  <h1>${user}的貼文</h1>
+  <p>${(posts.username==null)?'<a href="/login">Login</a> to Create a Post!':'Welcome '+user.username+', You may <a href="/post/new">Create a Post</a> or <a href="/logout">Logout</a> !'}</p>
+  <p>There are <strong>${list.length}</strong> posts!</p>
+  <ul id="posts">
+    ${list.join('\n')}
+  </ul>
+  `
+  return layout('Post', content)
+}
 
 export function loginUi() {
   return layout('Login', `
@@ -107,7 +142,7 @@ export function list(posts, user) {
   for (let post of posts) {
     list.push(`
     <li>
-      <h2>${ post.title } -- by ${post.username}</h2>
+      <h2>${ post.title } -- by <a href="/list/${post.username}">${post.username}</a></h2>
       <p><a href="/post/${post.id}">Read post</a></p>
     </li>
     `)
