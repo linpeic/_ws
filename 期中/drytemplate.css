@@ -1,0 +1,58 @@
+*{padding-left:12%;
+padding-right:12%;}
+
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width:100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: center;
+  padding: 5px;
+}
+
+tr:nth-child(even) {
+  background-color: rgb(210, 210, 210);
+}
+.grid-container {
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  gap:3px;
+  background-color: rgb(155, 185, 205);
+  padding: 10px;
+}
+.grid-container > div {
+  background-color: rgba(255, 255, 255, 0.9);
+}
+.item1{grid-row:1/2;
+       grid-column:1/2;
+       text-align: center;
+       margin:0;
+      padding-top:20px;
+       }
+.item2{grid-row:2/3;
+       grid-column:1/5;
+       font-size:20px;
+       padding: 5px;}
+.item3{grid-row:1/2;
+       grid-column:2/5;
+       padding: 15px;}
+.quantity{width:100px;
+          padding-left:0px;}
+.topnav {
+  overflow: hidden;
+}
+.topnav a {
+  float: left;
+  display: block;
+  text-align: left;
+  text-decoration: none;
+  color: rgb(28, 96, 231);
+}
+body {
+  background-image: url('果乾系列背景.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+}
