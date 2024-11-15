@@ -30,20 +30,19 @@ body {
     <section id="content">
       ${content}
     </section>
-    <script>
-      function submit(event){
-        event.preventDefault()
-        alert('${user}您好')
-        setTimeout(function(){
-          window.location.href = "https://linpeic.github.io/ws/%E6%9C%9F%E4%B8%AD/main.html"; },3000)
-          }
-      }
-    </script>
+    // <script>
+    //   function submit(event){
+    //     event.preventDefault()
+    //     alert('${user}您好')
+    //     setTimeout(function(){
+    //       window.location.href = "https://linpeic.github.io/ws/%E6%9C%9F%E4%B8%AD/main.html"; },3000)
+    //       }
+    //   }
+    // </script>
   </body>
   </html>
   `
 }
-
 export function loginUi(user) {
   return layout(user,'Login', `
   <div class="h2"><b>會員登入</b></div>
@@ -51,7 +50,7 @@ export function loginUi(user) {
   <div class="topnav">
   <a href="https://linpeic.github.io/ws/%E6%9C%9F%E4%B8%AD/main.html">首頁</a>
   </div></div><br>
-  <form onsubmit="submit(event)" method="post">
+  <form action="#" method="post">
     <label for="account">帳號：
     <p><input type="text" placeholder="輸入帳號" name="username"></p>
     <label for="password">密碼：

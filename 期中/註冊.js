@@ -4,20 +4,16 @@ import { DB } from "https://deno.land/x/sqlite/mod.ts";
 import { Session } from "https://deno.land/x/oak_sessions/mod.ts";
 
 const db = new DB("blog.db");
-db.query("CREATE TABLE IF NOT EXISTS posts (id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT, title TEXT, body TEXT)");
 db.query("CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT, password TEXT, email TEXT)");
 
 const router = new Router();
 
-router.get('/', list)
+router
   .get('/signup', signupUi)
   .post('/signup', signup)
   .get('/login', loginUi)
   .post('/login', login)
   .get('/logout', logout)
-  .get('/post/new', add)
-  .get('/post/:id', show)
-  .post('/post', create)
 
 const app = new Application()
 app.use(Session.initMiddleware())
@@ -25,9 +21,9 @@ app.use(router.routes());
 app.use(router.allowedMethods());
 
 function sqlcmd(sql, arg1) {
-  console.log('sql:', sql)
+  console.log('sqlsql:', sql)
   try {
-    var results = db.query(sql, arg1)
+    const results = db.query(sql, arg1)
     console.log('sqlcmd: results=', results)
     return results
   } catch (error) {
@@ -36,19 +32,19 @@ function sqlcmd(sql, arg1) {
   }
 }
 
-function postQuery(sql) {
+function loginQuery(sql,arg=[]) {
   let list = []
-  for (const [id, username, title, body] of sqlcmd(sql)) {
-    list.push({id, username, title, body})
+  for (const [username, password] of sqlcmd(sql,arg)) {
+    list.push({username, password})
   }
-  console.log('postQuery: list=', list)
+  console.log('loginQuery: list=', list)
   return list
 }
 
-function userQuery(sql) {
+function userQuery(sql,args=[]) {
   let list = []
-  for (const [id, username, password, email] of sqlcmd(sql)) {
-    list.push({id, username, password, email})
+  for (const [id,username, password, email] of sqlcmd(sql,args)) {
+    list.push({id,username, password, email})
   }
   console.log('userQuery: list=', list)
   return list
@@ -64,88 +60,70 @@ async function parseFormBody(body) {
 }
 
 async function signupUi(ctx) {
-  ctx.response.body = await render.signupUi();
+  ctx.response.body = await render.signupUi()
 }
 
 async function signup(ctx) {
   const body = ctx.request.body
   if (body.type() === "form") {
     var user = await parseFormBody(body)
-    console.log('user=', user)
-    var dbUsers = userQuery(`SELECT id, username, password, email FROM users WHERE username='${user.username}'`)
-    console.log('dbUsers=', dbUsers)
+    console.log('usersignup=', user)
+    var dbUsers = userQuery(`SELECT id username, password, email FROM users WHERE username=?`,[user.username])
+    console.log('dbUserssignup=', dbUsers)
     if (dbUsers.length === 0) {
-      sqlcmd("INSERT INTO users (username, password, email) VALUES (?, ?, ?)", [user.username, user.password, user.email]);
+      sqlcmd("INSERT INTO users (username, password, email) VALUES (?, ?, ?)", [user.username, user.password, user.email])
       ctx.response.body = render.success()
-    } else 
+    } else {
       ctx.response.body = render.fail()
+    }
   }
 }
 
 async function loginUi(ctx) {
-  ctx.response.body = await render.loginUi();
+  ctx.response.body = await render.loginUi()
 }
 
 async function login(ctx) {
   const body = ctx.request.body
   if (body.type() === "form") {
     var user = await parseFormBody(body)
-    var dbUsers = userQuery(`SELECT id, username, password, email FROM users WHERE username='${user.username}'`) // userMap[user.username]
-    var dbUser = dbUsers[0]
-    if (dbUser.password === user.password) {
-      ctx.state.session.set('user', user)
-      console.log('session.user=', await ctx.state.session.get('user'))
-      ctx.response.redirect('/');
-    } else {
-      ctx.response.body = render.fail()
+    console.log('userlogin=', user)
+    var dbUsers = userQuery(`SELECT id, username, password FROM users WHERE username=?`,[user.username])
+    
+    console.log('dbUserlogin=', dbUsers)
+    
+    if(dbUsers.length >0){
+      const dbUser =dbUsers[0]
+      console.log('dbUserpassword：',dbUser.password)
+      console.log('userpassword：',user.password)
+      if(dbUser.password === user.password) {
+      
+        await ctx.state.session.set('user', user)
+        console.log('session.user=', await ctx.state.session.get('user'))
+        
+        ctx.response.redirect('https://linpeic.github.io/ws/%E6%9C%9F%E4%B8%AD/main.html')
+        localStorage.setItem('username', user.username)//把 username 儲存到 LocalStorage 中
+      } else {
+        ctx.response.body =`
+          <html>
+            <body>
+              <title>Errorrrrrrr</title>
+              <p>登入錯誤，請確認帳號或密碼是否正確</p>
+              <p><a href="/login">重新登入</a></p>
+              <p><a href="/signup">註冊</a></p>
+            </body>
+          </html>
+        ` 
+      }
     }
   }
+
 }
 
 async function logout(ctx) {
-   ctx.state.session.set('user', null)
-   ctx.response.redirect('/')
+   await ctx.state.session.set('user', null)
+   ctx.response.redirect('https://linpeic.github.io/ws/%E6%9C%9F%E4%B8%AD/main.html')
 }
 
-async function list(ctx) {
-  let posts = postQuery("SELECT id, username, title, body FROM posts")
-  console.log('list:posts=', posts)
-  ctx.response.body = await render.list(posts, await ctx.state.session.get('user'));
-}
-
-async function add(ctx) {
-  var user = await ctx.state.session.get('user')
-  if (user != null) {
-    ctx.response.body = await render.newPost();
-  } else {
-    ctx.response.body = render.fail()
-  }
-}
-
-async function show(ctx) {
-  const pid = ctx.params.id;
-  let posts = postQuery(`SELECT id, username, title, body FROM posts WHERE id=${pid}`)
-  let post = posts[0]
-  console.log('show:post=', post)
-  if (!post) ctx.throw(404, 'invalid post id');
-  ctx.response.body = await render.show(post);
-}
-
-async function create(ctx) {
-  const body = ctx.request.body
-  if (body.type() === "form") {
-    var post = await parseFormBody(body)
-    console.log('create:post=', post)
-    var user = await ctx.state.session.get('user')
-    if (user != null) {
-      console.log('user=', user)
-      sqlcmd("INSERT INTO posts (username, title, body) VALUES (?, ?, ?)", [user.username, post.title, post.body]);  
-    } else {
-      ctx.throw(404, 'not login yet!');
-    }
-    ctx.response.redirect('/');
-  }
-}
-
-console.log('Server run at http://127.0.0.1:8000')
+console.log('Server run at http://127.0.0.1:8000/signup')
 await app.listen({ port: 8000 });

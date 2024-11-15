@@ -42,12 +42,23 @@ async function login(ctx) {
     console.log('user=', user)
     var dbUser = userMap[user.username]
     console.log('dbUser=', dbUser)
-    if (dbUser.password === user.password) {
+    if (dbUser && dbUser.password === user.password) {
       await ctx.state.session.set('user', user)
       console.log('session.user=', await ctx.state.session.get('user'))
       ctx.response.redirect('https://linpeic.github.io/ws/%E6%9C%9F%E4%B8%AD/main.html');
     } else {
-      ctx.response.body = '登入錯誤，請確認帳號或密碼是否正確'
+      ctx.response.body =`
+        <html>
+          <head>
+            <title>Errorrrrrrr</title>
+          </head>
+          <body>
+            <p>登入錯誤，請確認帳號或密碼是否正確</p>
+            <p><a href="/login">重新登入</a></p>
+            <p><a href="/login">註冊</a></p>
+          </body>
+        </html>
+      ` 
     }
   }
 }
