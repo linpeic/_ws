@@ -1,6 +1,5 @@
 <html>
 <head>
-  <!-- <script src="註冊.js"></script> -->
   <style>
     *{  margin:0;
     padding:0;
@@ -101,13 +100,6 @@ href="https://linpeic.github.io/ws/%E6%9C%9F%E4%B8%AD/%E6%B0%B4%E6%9E%9C%E8%8C%B
   </div>
 </div>
 <script>
-// window.onload = function() {
-//   const username = localStorage.getItem('username'); // 從 LocalStorage 獲取 username
-//   if (username) {
-//     document.getElementById('username-placeholder').textContent = username; // 顯示用戶名
-//   }
-// }
-
 let mode = 'small'
 let sidebar = document.querySelector('#sidebar')
 function turn() {
@@ -115,14 +107,11 @@ function turn() {
    {
       mode = 'large'
       sidebar.style.width = "250px"
-   } 
-   else 
+   }else 
    {
       mode = 'small'
       sidebar.style.width = "20px"
    }
-
-
 }
 </script>
 </body>

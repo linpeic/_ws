@@ -8,7 +8,7 @@ db.query("CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY AUTOINCREMENT
 
 const router = new Router();
 
-router
+router.get('/', list)
   .get('/signup', signupUi)
   .post('/signup', signup)
   .get('/login', loginUi)
@@ -30,15 +30,6 @@ function sqlcmd(sql, arg1) {
     console.log('sqlcmd error: ', error)
     throw error
   }
-}
-
-function loginQuery(sql,arg=[]) {
-  let list = []
-  for (const [username, password] of sqlcmd(sql,arg)) {
-    list.push({username, password})
-  }
-  console.log('loginQuery: list=', list)
-  return list
 }
 
 function userQuery(sql,args=[]) {
@@ -101,7 +92,7 @@ async function login(ctx) {
         await ctx.state.session.set('user', user)
         console.log('session.user=', await ctx.state.session.get('user'))
         
-        ctx.response.redirect('https://linpeic.github.io/ws/%E6%9C%9F%E4%B8%AD/main.html')
+        ctx.response.redirect('/')
         localStorage.setItem('username', user.username)//把 username 儲存到 LocalStorage 中
       } else {
         ctx.response.body =`
@@ -125,5 +116,13 @@ async function logout(ctx) {
    ctx.response.redirect('https://linpeic.github.io/ws/%E6%9C%9F%E4%B8%AD/main.html')
 }
 
-console.log('Server run at http://127.0.0.1:8000/signup')
+async function list(ctx) {
+  let posts = userQuery("SELECT id,username, password, email FROM users")
+  console.log('list:posts=', posts)
+  let user = await ctx.state.session.get('user')
+  console.log('user=', user)
+  ctx.response.body = await render.list(posts, user);
+}
+
+console.log('Server run at http://127.0.0.1:8000')
 await app.listen({ port: 8000 });
