@@ -15,7 +15,7 @@ router.get('/', list)
   .post('/login', login)
   .get('/logout', logout)
   .get('/:user', afterlogin)
-  // .get('/:user/dry', dry) 
+  .get('/:user/dry', dry) 
 
 const app = new Application()
 app.use(Session.initMiddleware())
@@ -82,9 +82,7 @@ async function login(ctx) {
     var user = await parseFormBody(body)
     console.log('userlogin=', user)
     var dbUsers = userQuery(`SELECT id, username, password FROM users WHERE username=?`,[user.username])
-    
     console.log('dbUserlogin=', dbUsers)
-    
     if(dbUsers.length >0){
       const dbUser =dbUsers[0]
       console.log('dbUserpassword：',dbUser.password)
@@ -122,6 +120,11 @@ async function afterlogin(ctx) {
   const user = ctx.params.user; // 取得路由參數中的 user
   console.log('user=', user)
   ctx.response.body = await render.afterlogin(user); // 顯示該用戶的貼文
+}
+async function dry(ctx) {
+  const user = ctx.params.user; // 取得路由參數中的 user
+  console.log('user=', user)
+  ctx.response.body = await render.dry(user); // 顯示該用戶的貼文
 }
 
 console.log('Server run at http://127.0.0.1:8000')

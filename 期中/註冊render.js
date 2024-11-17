@@ -3,30 +3,6 @@ export function layout(title, content) {
   <html>
   <head>
     <title>${title}</title>
-    <style>
-      *{padding-left:12%;
-padding-right:10%;}
-
-.h2{
-    font-size:30;
-    padding-left:90px;
-    padding-bottom:20px;
-    padding-top:30px;}
-.topnav {
-  overflow: hidden;
-}
-.topnav a {
-  display: block;
-  text-decoration: none;
-  color: rgb(28, 96, 231);
-}
-body {
-  background-image: url('https://raw.githubusercontent.com/linpeic/ws/master/期中/芒果園.jpg');
-  background-size: cover;
-  background-repeat: no-repeat;
-}
-    </style>
-  </head>
   <body>
     <section id="content">
       ${content}
@@ -38,18 +14,25 @@ body {
 
 export function loginUi() {
   return layout('Login', `
-  <div class="h2"><b>會員登入</b></div>
-  <div style="text-align:left; padding:0px;">
-  <div class="topnav">
-  <a href="/">首頁</a>
-  </div></div><br>
-  <form action="#" method="post">
+  <html>
+  <head>
+    <link rel="stylesheet" href="https://linpeic.github.io/ws/%E6%9C%9F%E4%B8%AD/登入.css">
+  </head>
+  <body>
+    <div class="h2"><b>會員登入</b></div>
+    <div style="text-align:left; padding:0px;">
+    <div class="topnav">
+    <a href="https://linpeic.github.io/ws/%E6%9C%9F%E4%B8%AD/main.html">首頁</a>
+    </div></div><br>
+    <form action="/action_page.php"  style="font-size: 20px;">
     <label for="account">帳號：
-    <p><input type="text" placeholder="輸入帳號" name="username"></p>
+    <input type="text" id="account" name="account"></label><br><br>
     <label for="password">密碼：
-    <p><input type="password" placeholder="密碼" name="password"></p>
-    <p><input type="submit" value="送出"></p>
-  </form>
+    <input type="password" id="pwd" name="pwd"></label><br><br>
+    <div><input type="submit" value="登入"></div>
+    </form>
+  </body>
+  </html>
   `)
 }
 
@@ -293,7 +276,7 @@ export function afterlogin(user) {
   <div class="item2">
   <p style="text-align:center;font-size:22px;padding-bottom:20px; padding-top:5px; padding-right:10px; color:white;"><b>目錄</b></p><hr><hr>
   <br><div style="text-align:center;font-size:16px;padding-right:10px;"> <a
-  href="https://linpeic.github.io/ws/%E6%9C%9F%E4%B8%AD/%E6%9E%9C%E4%B9%BE.html">果乾系列</a></div>
+  href="/${user}/dry">果乾系列</a></div>
   <br>
   <div style="text-align:center;font-size:16px;padding-right:5px;"><a
   href="https://linpeic.github.io/ws/%E6%9C%9F%E4%B8%AD/%E6%B0%B4%E6%9E%9C%E8%8C%B6.html">水果茶系列</a></div>
@@ -305,7 +288,7 @@ export function afterlogin(user) {
 
   <p style="text-align:center;font-size:22px; padding-bottom:20px;padding-top:20px; padding-right:10px; color:white;"><b>其他</b></p><hr><hr>
   <br>
-  <div style="text-align:center;font-size:16px;padding-right:10px;"> <a href="http://127.0.0.1:8000/signup">註冊/登入</a></div>
+  <div style="text-align:center;font-size:16px;padding-right:10px;"> <a href="/signup">註冊/登入</a></div>
   <br>
   <div style="text-align:center;font-size:16px;padding-right:10px;"> <a href="file:///D:/ccc/ccc113aWs/%E6%9C%9F%E4%B8%AD/%E8%B3%BC%E7%89%A9%E8%BB%8A.html">我的購物車</a></div>
   <br>
@@ -344,5 +327,71 @@ export function afterlogin(user) {
   </body>
   </html>
   `
-  return layout('Posts', content) // 使用 layout 函式來產生頁面佈局
+  return layout(`Welcom${user}`, content) // 使用 layout 函式來產生頁面佈局
+}
+export function dry() {
+  return layout('dry', `
+  <html>
+    <head>
+      <link rel="stylesheet" href="果乾.css">
+    </head>
+    <body>
+      <h1>果乾系列</h1>
+      <div style="text-align:left; padding:0px;">
+      <div class="topnav1">
+      <a href="http://127.0.0.1:8000">首頁</a>
+      </div></div><br>
+      <div class="grid-container">
+      <div>
+      <img src="https://raw.githubusercontent.com/linpeic/ws/master/期中/d1.jpg" alt="愛文芒果乾" style="height:230px; padding:0px ;padding-top:10px;"><br> 
+      
+      <div class="topnav ">
+      <a href="https://linpeic.github.io/ws/%E6%9C%9F%E4%B8%AD/dry1.html"style="font-size:17px" >
+      <b >愛文芒果乾</b></a>
+      <p style="font-size:15px ; background-color: rgba(229, 229, 219, 1.5);">售價：120元<br>重量：80g</p>
+      </div></div>
+      
+      <div>
+      <img src="https://raw.githubusercontent.com/linpeic/ws/master/期中/d2.jpg" alt="原味紅龍果乾" style="height:230px; padding:0px ;padding-top:10px;"><br> 
+      <div class="topnav ">
+      <a href="https://linpeic.github.io/ws/%E6%9C%9F%E4%B8%AD/dry2.html">
+      <b style="font-size:17px;" >原味紅龍果乾</b></a>
+      <p style="font-size:15px ;background-color: rgba(229, 229, 219, 1.5);">售價：120元<br>重量：90g</p>
+      </div></div>
+      
+      <div>
+      <img src="https://raw.githubusercontent.com/linpeic/ws/master/期中/d3.jpg" alt="甘草芭樂乾" style="height:230px; padding:0px ;padding-top:10px;"><br> 
+      <div class="topnav ">
+      <a href="https://linpeic.github.io/ws/%E6%9C%9F%E4%B8%AD/dry3.html">
+      <b style="font-size:17px">甘草芭樂乾</b></a>
+      <p style="font-size:15px ;background-color: rgba(229, 229, 219, 1.5);">售價：120元<br>重量：90g</p>
+      </div></div>
+      
+      <div>
+      <img src="https://raw.githubusercontent.com/linpeic/ws/master/期中/d4.jpg" alt="原味火龍果乾" style="height:230px; padding:0px ;padding-top:10px;"><br> 
+      <div class="topnav ">
+      <a href="https://linpeic.github.io/ws/%E6%9C%9F%E4%B8%AD/dry4.html">
+      <b style="font-size:17px;"  >原味火龍果乾</b></a>
+      <p style="font-size:15px;background-color: rgba(229, 229, 219, 1.5);">售價：120元<br>重量：90g</p>
+      </div></div>
+      
+      <div>
+      <img src="https://raw.githubusercontent.com/linpeic/ws/master/期中/d5.jpg" alt="原味香蕉乾" style="height:230px; padding:0px ;padding-top:10px;"><br> 
+      <div class="topnav ">
+      <a href="https://linpeic.github.io/ws/%E6%9C%9F%E4%B8%AD/dry5.html">
+      <b style="font-size:17px;">原味香蕉乾</b></a>
+      <p style="font-size:15px;background-color: rgba(229, 229, 219, 1.5);">售價：120元<br>重量：100g</p>
+      </div></div>
+      
+      <div>
+      <img src="https://raw.githubusercontent.com/linpeic/ws/master/期中/d6.jpg" alt="原味芭蕉乾"style="height:200px; padding:0px ;padding-top:10px;"><br> 
+      <div class="topnav ">
+      <a href="https://linpeic.github.io/ws/%E6%9C%9F%E4%B8%AD/dry6.html">
+      <b style="font-size:17px;"><br>原味芭蕉乾</b></a>
+      <p style="font-size:15px;background-color: rgba(229, 229, 219, 1.5);">售價：120元<br>重量：100g</p>
+      </div></div>
+      </div>
+    </body>
+  </html>
+  ` )
 }

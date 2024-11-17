@@ -1,0 +1,20 @@
+*{padding-left:12%;
+padding-right:10%;}
+.h2{
+    font-size:30;
+    padding-left:90px;
+    padding-bottom:20px;
+     padding-top:30px;}
+.topnav {
+  overflow: hidden;
+}
+.topnav a {
+  display: block;
+  text-decoration: none;
+  color: rgb(28, 96, 231);
+}
+body {
+  background-image: url('https://raw.githubusercontent.com/linpeic/ws/master/期中/登入.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+}
