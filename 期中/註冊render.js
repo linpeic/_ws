@@ -41,9 +41,9 @@ export function signupUi() {
   return layout('Signup', `
   <html>
   <head>
-    <link rel="stylesheet" href="註冊.css">
+    <link rel="stylesheet" href="https://linpeic.github.io/ws/%E6%9C%9F%E4%B8%AD/%E8%A8%BB%E5%86%8A.css">
   </head>
-<body>
+  <body>
   <div class="h2"><b>新用戶註冊</b>
   </div>
   <div style="text-align:left; padding:0px;">
@@ -100,63 +100,7 @@ export function list() {
   let content = `
   <html>
   <head>
-  <style>
-    *{  margin:0;
-    padding:0;
-  }
-  .item2 { grid-area: menu; }
-  .item3 { grid-area: main;}
-  .item5 { grid-area: footer;}
-
-  .grid-container {
-  display: grid;
-  height: 100vh;
-  grid-template-areas:
-    'menu main main main main'
-    'menu footer footer footer footer';
-  gap: 2px;  
-  text-align: center;
-  padding: 1px;
-  background-image: url('https://raw.githubusercontent.com/linpeic/ws/master/期中/紅龍果1.jpg');
-  background-size: cover;
-  background-repeat: no-repeat;
-  }
-  .sidebar{
-  width: 1fr;
-  height: 100vh;
-  background-color:rgba(31, 70, 11, 0.8) ;
-  transition: width 1s;
-  padding:40px;
-  }
-  #sidebar{
-  width: 25px;
-  height:100vh;
-  transition: width 3s;
-  background-color:rgba(31, 70, 11, 0.8) ;
-  }
-  .ser a {
-  overflow: hidden;
-  text-align: center;
-  display: block;
-  text-decoration: none;
-  color:rgb(254, 253, 253);
-  }
-  .ser a:hover {
-  background-color:rgba(255, 255, 255,0.5);
-  }
-  .fanweb a{
-  overflow: hidden;
-  text-align: center;
-  display: block;
-  text-decoration: none;
-  color:rgb(6, 63, 110);
-  }
-
-  .hi{
-  text-align:center;
-  font-size:30px;
-  padding-top: 20px;}
-  </style>
+  <link rel="stylesheet" href="main.css">
   </head>
   <body>
   <div class="grid-container">
