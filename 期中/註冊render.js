@@ -190,7 +190,7 @@ export function afterlogin(user) {
   <br>
   <div style="text-align:center;font-size:16px;padding-right:10px;"> <a href="/signup">註冊/登入</a></div>
   <br>
-  <div style="text-align:center;font-size:16px;padding-right:10px;"> <a href="file:///D:/ccc/ccc113aWs/%E6%9C%9F%E4%B8%AD/%E8%B3%BC%E7%89%A9%E8%BB%8A.html">我的購物車</a></div>
+  <div style="text-align:center;font-size:16px;padding-right:10px;"> <a href="/${user}/car">我的購物車</a></div>
   <br>
   <div style="text-align:center;font-size:16px;padding-right:10px;"> <a href="https://linpeic.github.io/wp/%E6%9C%9F%E4%B8%AD/Q&A.html">常見問題</a></div>
   </div>
@@ -345,5 +345,16 @@ export function water(user) {
   </div>
   </body>
   </html>
+  ` )
+}
+
+export function car() {
+  return layout('car', `
+    <html>
+      <body>
+        <title>car</title>
+        <p>購物車</p>
+      </body>
+    </html>
   ` )
 }

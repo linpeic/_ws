@@ -17,6 +17,7 @@ router.get('/', list)
   .get('/:user', afterlogin)
   .get('/:user/dry', dry) 
   .get('/:user/water', water)
+  .get('/:user/car', car)
 
 const app = new Application()
 app.use(Session.initMiddleware())
@@ -110,7 +111,7 @@ async function login(ctx) {
 
 async function logout(ctx) {
    await ctx.state.session.set('user', null)
-   ctx.response.redirect('https://linpeic.github.io/ws/%E6%9C%9F%E4%B8%AD/main.html')
+   ctx.response.redirect('/')
 }
 
 async function list(ctx) {
@@ -118,20 +119,27 @@ async function list(ctx) {
 }
 
 async function afterlogin(ctx) {
-  const user = ctx.params.user; // 取得路由參數中的 user
+  const user = ctx.params.user
   console.log('user=', user)
-  ctx.response.body = await render.afterlogin(user); // 顯示該用戶的貼文
+  ctx.response.body = await render.afterlogin(user)
 }
 async function dry(ctx) {
-  const user = ctx.params.user; // 取得路由參數中的 user
+  const user = ctx.params.user
   console.log('user=', user)
-  ctx.response.body = await render.dry(user); // 顯示該用戶的貼文
+  ctx.response.body = await render.dry(user)
 }
 
 async function water(ctx) {
-  const user = ctx.params.user; // 取得路由參數中的 user
+  const user = ctx.params.user 
   console.log('user=', user)
-  ctx.response.body = await render.water(user); // 顯示該用戶的貼文
+  ctx.response.body = await render.water(user) 
 }
+
+async function car(ctx) {
+  const user = ctx.params.user
+  console.log('user=', user)
+  ctx.response.body = await render.car(user)
+}
+
 console.log('Server run at http://127.0.0.1:8000')
 await app.listen({ port: 8000 });
