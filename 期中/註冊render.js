@@ -301,7 +301,7 @@ export function water(user) {
   return layout('water', `
   <html>
   <head>
-    <link rel="stylesheet" href="水果茶.css">
+    <link rel="stylesheet" href="https://linpeic.github.io/ws/%E6%9C%9F%E4%B8%AD/%E6%B0%B4%E6%9E%9C%E8%8C%B6.css">
   </head>
   <body>
   <h1>水果茶系列</h1>
@@ -311,7 +311,7 @@ export function water(user) {
   </div></div><br>
   <div class="grid-container">
   <div>
-  <img src="w1.jpg" alt="芒芒遇見你" style="height:220px; padding:0px ;padding-top:10px"><br> 
+  <img src="https://raw.githubusercontent.com/linpeic/ws/master/期中/w1.jpg" alt="芒芒遇見你" style="height:220px; padding:0px ;padding-top:10px"><br> 
   
   <div class="topnav ">
   <a href="https://linpeic.github.io/ws/%E6%9C%9F%E4%B8%AD/water1.html"style="font-size:17px; ">
@@ -320,7 +320,7 @@ export function water(user) {
   </div></div>
   
   <div>
-  <img src="w2.jpg" alt="粉紅泡泡" style="height:220px; padding:0px  ;padding-top:10px"><br> 
+  <img src="https://raw.githubusercontent.com/linpeic/ws/master/期中/w2.jpg" alt="粉紅泡泡" style="height:220px; padding:0px  ;padding-top:10px"><br> 
   <div class="topnav ">
   <a href="https://linpeic.github.io/ws/%E6%9C%9F%E4%B8%AD/water2.html">
   <b style="font-size:17px;" >粉紅泡泡</b></a>
@@ -328,7 +328,7 @@ export function water(user) {
   </div></div>
   
   <div>
-  <img src="w3.jpg" alt="紅心土芭樂乾" style="height:230px; padding:0px  ;padding-top:10px"><br> 
+  <img src="https://raw.githubusercontent.com/linpeic/ws/master/期中/w3.jpg" alt="紅心土芭樂乾" style="height:230px; padding:0px  ;padding-top:10px"><br> 
   <div class="topnav ">
   <a href="https://linpeic.github.io/ws/%E6%9C%9F%E4%B8%AD/water3.html">
   <b style="font-size:17px;"  >紅心土芭樂乾</b></a>
@@ -336,7 +336,7 @@ export function water(user) {
   </div></div>
   
   <div>
-  <img src="w4.jpg" alt="洛神花果醬" style="height:230px; padding:0px  ;padding-top:10px"><br> 
+  <img src="https://raw.githubusercontent.com/linpeic/ws/master/期中/w4.jpg" alt="洛神花果醬" style="height:230px; padding:0px  ;padding-top:10px"><br> 
   <div class="topnav ">
   <a href="https://linpeic.github.io/ws/%E6%9C%9F%E4%B8%AD/water4.html">
   <b style="font-size:17px;">洛神花果醬</b></a>
