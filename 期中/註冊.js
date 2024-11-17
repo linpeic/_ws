@@ -14,7 +14,8 @@ router.get('/', list)
   .get('/login', loginUi)
   .post('/login', login)
   .get('/logout', logout)
-  .get('/:user', afterlogin) 
+  .get('/:user', afterlogin)
+  // .get('/:user/dry', dry) 
 
 const app = new Application()
 app.use(Session.initMiddleware())
@@ -89,11 +90,8 @@ async function login(ctx) {
       console.log('dbUserpassword：',dbUser.password)
       console.log('userpassword：',user.password)
       if(dbUser.password === user.password) {
-      
         await ctx.state.session.set('user', user)
         console.log('session.user=', await ctx.state.session.get('user'))
-        
-        // ctx.response.redirect('/${username}')
         ctx.response.redirect(`/${user.username}`)
       } else {
         ctx.response.body =`
@@ -109,7 +107,6 @@ async function login(ctx) {
       }
     }
   }
-
 }
 
 async function logout(ctx) {
@@ -118,11 +115,7 @@ async function logout(ctx) {
 }
 
 async function list(ctx) {
-  let posts = userQuery("SELECT id,username, password, email FROM users")
-  console.log('list:posts=', posts)
-  let user = await ctx.state.session.get('user')
-  console.log('user=', user)
-  ctx.response.body = await render.list(posts, user);
+  ctx.response.body = await render.list();
 }
 
 async function afterlogin(ctx) {
