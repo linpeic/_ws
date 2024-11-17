@@ -3,6 +3,7 @@ export function layout(title, content) {
   <html>
   <head>
     <title>${title}</title>
+  </head>
   <body>
     <section id="content">
       ${content}
@@ -16,13 +17,13 @@ export function loginUi() {
   return layout('Login', `
   <html>
   <head>
-    <link rel="stylesheet" href="https://linpeic.github.io/ws/%E6%9C%9F%E4%B8%AD/登入.css">
+    <link rel="stylesheet" href="https://linpeic.github.io/ws/%E6%9C%9F%E4%B8%AD/%E7%99%BB%E5%85%A5.css">
   </head>
   <body>
     <div class="h2"><b>會員登入</b></div>
     <div style="text-align:left; padding:0px;">
     <div class="topnav">
-    <a href="https://linpeic.github.io/ws/%E6%9C%9F%E4%B8%AD/main.html">首頁</a>
+    <a href="/">首頁</a>
     </div></div><br>
     <form action="/action_page.php"  style="font-size: 20px;">
     <label for="account">帳號：
@@ -38,6 +39,11 @@ export function loginUi() {
 
 export function signupUi() {
   return layout('Signup', `
+  <html>
+  <head>
+    <link rel="stylesheet" href="註冊.css">
+  </head>
+<body>
   <div class="h2"><b>新用戶註冊</b>
   </div>
   <div style="text-align:left; padding:0px;">
@@ -60,6 +66,10 @@ export function signupUi() {
   <div class="topnav" style="padding-left:260px;font-size:15px;"><a href="http://127.0.0.1:8000/login">已有帳號!登入</a></div>
   </div>
   </form>
+</form>
+</body>
+</html>
+
   `)
 }
 

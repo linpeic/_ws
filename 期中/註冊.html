@@ -1,62 +1,30 @@
 <html>
   <head>
-    <script src="註冊.js"></script>
-    <script src="註冊render.js"></script>
+    <link rel="stylesheet" href="註冊.css">
   </head>
-<style>
-*{padding-left:12%;
-padding-right:10%;}
-
-.h2{
-    font-size:30;
-    padding-left:90px;
-    padding-bottom:20px;
-    padding-top:30px;}
-.topnav {
-  overflow: hidden;
-}
-.topnav a {
-  display: block;
-  text-decoration: none;
-  color: rgb(28, 96, 231);
-}
-body {
-  background-image: url('芒果園.jpg');
-  background-size: cover;
-  background-repeat: no-repeat;
-}
-</style>
 <body>
-<div class="h2"><b>註冊</b>
-</div>
-<div style="text-align:left; padding:0px;">
-<div class="topnav">
-<a href="https://linpeic.github.io/ws/%E6%9C%9F%E4%B8%AD/main.html">首頁</a>
-</div></div><br>
-<form action="#"  style="font-size: 20px;"> <!--action="/action_page.php"--> 
-  <label for="fname">姓名：
-  <input type="text" id="fname" name="fname"></label><br><br>
-  <label for="gender">性別：
- <input type="radio" id="male" name="gender" value="male">男性
- <input type="radio" id="female" name="gender" value="female">女性</label>
-<br><br>
+  <div class="h2"><b>新用戶註冊</b>
+  </div>
+  <div style="text-align:left; padding:0px;">
+  <div class="topnav">
+  <a href="/">首頁</a>
+  </div></div><br>
+
+  <form action="/signup" method="post" style="font-size: 20px;"> 
   <label for="account">帳號：
-  <input type="text" id="account" name="account"></label><br><br>
+  <input type="text" id="username" name="username" name="username"></label><br><br>
   <label for="password">密碼：
-  <input type="password" id="pwd" name="pwd"></label><br><br>
+  <input type="password" name="password"></label><br><br>
   
   <label for="email">email：
-  <input type="email" id="email" name="email"></label><br><br>
-  <label for="phone">電話：
+  <input type="text" placeholder="@email.com" name="email"></label><br><br>
+  <label for="phone">手機號碼：
   <input type="tel" id="phone" name="phone" placeholder="09XX-123-456" pattern="[0-9]{4}-[0-9]{3}-[0-9]{3}"></label><br><br>
 
-  <label for="birthday">生日：
-  <input type="date" id="birthday" name="birthday"></label><br><br>
-  <label for="address">地址：
-  <textarea id="address" name="address" rows="3" cols="20"></textarea></label><br><br>
   <div><input type="submit" value="送出">
-  <div class="topnav" style="padding-left:260px;font-size:15px;"><a href="https://linpeic.github.io/ws/%E6%9C%9F%E4%B8%AD/%E7%99%BB%E5%85%A5.html">已有帳號!登入</a></div>
+  <div class="topnav" style="padding-left:260px;font-size:15px;"><a href="http://127.0.0.1:8000/login">已有帳號!登入</a></div>
   </div>
+  </form>
 </form>
 </body>
 </html>
