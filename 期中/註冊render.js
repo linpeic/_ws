@@ -183,7 +183,7 @@ export function afterlogin(user) {
   href="/${user}/dry">果乾系列</a></div>
   <br>
   <div style="text-align:center;font-size:16px;padding-right:5px;"><a
-  href="https://linpeic.github.io/ws/%E6%9C%9F%E4%B8%AD/%E6%B0%B4%E6%9E%9C%E8%8C%B6.html">水果茶系列</a></div>
+  href="/${user}/water">水果茶系列</a></div>
   <br><hr><hr>
 
   <p style="text-align:center;font-size:22px; padding-bottom:20px;padding-top:20px; padding-right:10px; color:white;"><b>其他</b></p><hr><hr>
@@ -293,6 +293,57 @@ export function dry(user) {
       </div></div>
       </div>
     </body>
+  </html>
+  ` )
+}
+
+export function water(user) {
+  return layout('water', `
+  <html>
+  <head>
+    <link rel="stylesheet" href="水果茶.css">
+  </head>
+  <body>
+  <h1>水果茶系列</h1>
+  <div style="text-align:left; padding:0px;">
+  <div class="topnav1">
+  <a href="/${user}">首頁</a>
+  </div></div><br>
+  <div class="grid-container">
+  <div>
+  <img src="w1.jpg" alt="芒芒遇見你" style="height:220px; padding:0px ;padding-top:10px"><br> 
+  
+  <div class="topnav ">
+  <a href="https://linpeic.github.io/ws/%E6%9C%9F%E4%B8%AD/water1.html"style="font-size:17px; ">
+  <b >芒芒遇見你</b></a>
+  <p style="font-size:15px;background-color:Beige;">售價：100元<br>重量規格：內含6小包，每小包（16g+-1g)</p>
+  </div></div>
+  
+  <div>
+  <img src="w2.jpg" alt="粉紅泡泡" style="height:220px; padding:0px  ;padding-top:10px"><br> 
+  <div class="topnav ">
+  <a href="https://linpeic.github.io/ws/%E6%9C%9F%E4%B8%AD/water2.html">
+  <b style="font-size:17px;" >粉紅泡泡</b></a>
+   <p style="font-size:15px;background-color:Beige;">售價：100元<br>重量規格：內含6小包，每小包（16g+-1g)</p>
+  </div></div>
+  
+  <div>
+  <img src="w3.jpg" alt="紅心土芭樂乾" style="height:230px; padding:0px  ;padding-top:10px"><br> 
+  <div class="topnav ">
+  <a href="https://linpeic.github.io/ws/%E6%9C%9F%E4%B8%AD/water3.html">
+  <b style="font-size:17px;"  >紅心土芭樂乾</b></a>
+  <p style="font-size:15px;background-color:Beige;">售價：120元<br>重量：80g</p>
+  </div></div>
+  
+  <div>
+  <img src="w4.jpg" alt="洛神花果醬" style="height:230px; padding:0px  ;padding-top:10px"><br> 
+  <div class="topnav ">
+  <a href="https://linpeic.github.io/ws/%E6%9C%9F%E4%B8%AD/water4.html">
+  <b style="font-size:17px;">洛神花果醬</b></a>
+  <p style="font-size:15px;background-color:Beige;">售價：200元<br>容量：370ml</p>
+  </div></div>
+  </div>
+  </body>
   </html>
   ` )
 }
