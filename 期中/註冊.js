@@ -14,6 +14,7 @@ router.get('/', list)
   .get('/login', loginUi)
   .post('/login', login)
   .get('/logout', logout)
+  .get('/:user', afterlogin) 
 
 const app = new Application()
 app.use(Session.initMiddleware())
@@ -92,8 +93,8 @@ async function login(ctx) {
         await ctx.state.session.set('user', user)
         console.log('session.user=', await ctx.state.session.get('user'))
         
-        ctx.response.redirect('/')
-        localStorage.setItem('username', user.username)//把 username 儲存到 LocalStorage 中
+        // ctx.response.redirect('/${username}')
+        ctx.response.redirect(`/${user.username}`)
       } else {
         ctx.response.body =`
           <html>
@@ -122,6 +123,12 @@ async function list(ctx) {
   let user = await ctx.state.session.get('user')
   console.log('user=', user)
   ctx.response.body = await render.list(posts, user);
+}
+
+async function afterlogin(ctx) {
+  const user = ctx.params.user; // 取得路由參數中的 user
+  console.log('user=', user)
+  ctx.response.body = await render.afterlogin(user); // 顯示該用戶的貼文
 }
 
 console.log('Server run at http://127.0.0.1:8000')

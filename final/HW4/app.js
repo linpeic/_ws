@@ -166,7 +166,5 @@ async function create(ctx) {
   }
 }
 
-
-
 console.log('Server run at http://127.0.0.1:8000')
 await app.listen({ port: 8000 });

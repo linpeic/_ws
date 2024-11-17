@@ -167,6 +167,7 @@ export function newPost() {
     <p><input type="submit" value="Create"></p>
   </form>
   `)
+
 }
 
 export function show(post) {
