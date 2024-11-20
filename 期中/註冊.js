@@ -5,6 +5,7 @@ import { Session } from "https://deno.land/x/oak_sessions/mod.ts";
 
 const db = new DB("blog.db");
 db.query("CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT, password TEXT, email TEXT)");
+// db.query("CREATE TABLE IF NOT EXISTS car (id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT, product TEXT,quantity INTEGER)");
 
 const router = new Router();
 
@@ -15,9 +16,11 @@ router.get('/', list)
   .post('/login', login)
   .get('/logout', logout)
   .get('/:user', afterlogin)
-  .get('/:user/dry', dry) 
+  .get('/:user/dry', dry)
+  .get('/:user/dry1', dry1) 
   .get('/:user/water', water)
   .get('/:user/car', car)
+ 
 
 const app = new Application()
 app.use(Session.initMiddleware())
@@ -44,6 +47,15 @@ function userQuery(sql,args=[]) {
   console.log('userQuery: list=', list)
   return list
 }
+
+// function buyQuery(sql,args=[]) {
+//   let list = []
+//   for (const [id,username,product,quantity] of sqlcmd(sql,args)) {
+//     list.push({id,username,product,quantity})
+//   }
+//   console.log('buyQuery: list=', list)
+//   return list
+// }
 
 async function parseFormBody(body) {
   const pairs = await body.form()
@@ -120,26 +132,64 @@ async function list(ctx) {
 
 async function afterlogin(ctx) {
   const user = ctx.params.user
-  console.log('user=', user)
+  console.log('userafterlogin=', user)
   ctx.response.body = await render.afterlogin(user)
 }
 async function dry(ctx) {
   const user = ctx.params.user
-  console.log('user=', user)
+  console.log('userdry=', user)
   ctx.response.body = await render.dry(user)
+}
+
+async function dry1(ctx) {
+  const user = ctx.params.user
+  console.log('userdry=', user)
+  ctx.response.body = await render.dry1(user)
 }
 
 async function water(ctx) {
   const user = ctx.params.user 
-  console.log('user=', user)
+  console.log('userdry=', user)
   ctx.response.body = await render.water(user) 
 }
 
+// async function addtoCar(ctx) {
+//   const user = ctx.params.user;
+//   const body = ctx.request.body();
+//   if (body.type() === "form") {
+//     const formData = await parseFormBody(body); // 獲取表單數據
+//     const { product, quantity } = formData;
+
+//     ctx.response.body =`
+//     <html>
+//       <body>
+//         <title>Errorrrrrrr</title>
+//         <p>登入錯誤，請確認帳號或密碼是否正確</p>
+//         <p><a href="/login">重新登入</a></p>
+//         <p><a href="/signup">註冊</a></p>
+//       </body>
+//     </html>
+//   ` 
+
+//     // 插入商品到購物車
+//     sqlcmd(
+//       "INSERT INTO car (username, product, quantity) VALUES (?, ?, ?)",
+//       [user, product, parseInt(quantity)]
+//     );
+
+//     console.log(`Added to car: ${product} x ${quantity} for user ${user}`);
+//   }
+// }
+
+
 async function car(ctx) {
   const user = ctx.params.user
-  console.log('user=', user)
+  // var buylist = buyQuery(`SELECT id, username,product,quantity FROM car WHERE username=?`,[user])
+  // console.log('buy=', buylist)
   ctx.response.body = await render.car(user)
+
 }
+
 
 console.log('Server run at http://127.0.0.1:8000')
 await app.listen({ port: 8000 });

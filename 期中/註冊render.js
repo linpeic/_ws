@@ -192,7 +192,7 @@ export function afterlogin(user) {
   <br>
   <div style="text-align:center;font-size:16px;padding-right:10px;"> <a href="/${user}/car">我的購物車</a></div>
   <br>
-  <div style="text-align:center;font-size:16px;padding-right:10px;"> <a href="https://linpeic.github.io/wp/%E6%9C%9F%E4%B8%AD/Q&A.html">常見問題</a></div>
+  <div style="text-align:center;font-size:16px;padding-right:10px;"> <a href="https://linpeic.github.io/ws/%E6%9C%9F%E4%B8%AD/Q&A.html">常見問題</a></div>
   </div>
   </div>
   </div>
@@ -247,7 +247,7 @@ export function dry(user) {
       <img src="https://raw.githubusercontent.com/linpeic/ws/master/期中/d1.jpg" alt="愛文芒果乾" style="height:230px; padding:0px ;padding-top:10px;"><br> 
       
       <div class="topnav ">
-      <a href="https://linpeic.github.io/ws/%E6%9C%9F%E4%B8%AD/dry1.html"style="font-size:17px" >
+      <a href="/${user}/dry1"style="font-size:17px" >
       <b >愛文芒果乾</b></a>
       <p style="font-size:15px ; background-color: rgba(229, 229, 219, 1.5);">售價：120元<br>重量：80g</p>
       </div></div>
@@ -295,6 +295,98 @@ export function dry(user) {
     </body>
   </html>
   ` )
+}
+
+export function dry1(user){
+  return layout('芒果乾',`
+    <html>
+  <head>
+    <link rel="stylesheet" href="https://linpeic.github.io/ws/%E6%9C%9F%E4%B8%AD/drytemplate.css">
+  </head>
+ <body>
+<div style="text-align: left; padding-left:0px;">
+<h1> 原味愛文芒果</h1>
+<div class="topnav ">
+  <a href="https://linpeic.github.io/ws/%E6%9C%9F%E4%B8%AD/main.html">
+  首頁</a> < 原味愛文芒果 >
+  <a href="https://linpeic.github.io/ws/%E6%9C%9F%E4%B8%AD/%E6%9E%9C%E4%B9%BE.html">
+  果乾系列</a>
+</div></div>
+<br>
+<div class="grid-container">
+  <div class="item1">
+  <img src="https://raw.githubusercontent.com/linpeic/ws/master/期中/d1.jpg" alt="原味愛文芒果乾"  style="width:240px; font-size:30px; padding:0px;">
+  <div style=font-size:25px;> 原味愛文芒果乾</div><br>
+  <p style="font-size:14px;"> 愛文芒果，草生種植，自然熟成，堅持不施灑藥物及除草劑，採人工及割草機除草，每日新鮮現採，製作成的正港愛文芒果乾，無糖、無添加防腐劑及任何添加物，讓您每口都是原汁原味的健康美味</p>
+  </div>
+  <div class="item2">
+ 訂購資訊：<br>
+  <label style="font-size:15px;">售價：每包120元 重量：80g</label>
+  
+  <form action="/${user}/car" method="post"><br>
+  <input type="hidden" name="product" value="愛文狗乾">
+  <div class="quantity"style="font-size:15px;" >訂購數量(包)：
+  <input type="number" id="quantity" name="quantity" min="1" max="20">
+  </div>
+  <input type="submit" value="送出" style="width:auto; text-align:center; font-size:10px;">
+  <br>
+  </form>
+  <br>
+  #交易付款方式：轉帳付款<br>
+  #運費計算：<br>
+  <table>
+  <tr>
+    <th>運送方式/運費</th>
+    <th>門檻</th>
+    <th>運費</th>
+  </tr>
+  <tr>
+    <td>賣貨便</td>
+    <td>未滿1100元</td>
+    <td>運費38元</td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>滿1100元</td>
+    <td>免運</td>
+  </tr>
+  <tr>
+    <td>宅急便</td>
+    <td>未滿10包</td>
+    <td>運費100元</td>
+  </tr>
+   <tr>
+    <td></td>
+    <td>滿10包</td>
+    <td>免運費</td>
+  </tr>
+</table>
+  </div> 
+  <div class="item3">
+  <div style="font-size:20px; text-align:center;">
+  原味愛文芒果乾
+  </div>
+  <br>
+愛文芒果草生種植，自然熟成，堅持不施灑藥物及除草劑，採人工及割草機除草，每日新鮮現採，製作成的正港愛文芒果乾，無糖、無添加防腐劑及任何添加物，讓您每口都是原汁原味的健康美味<br>
+#產地來源：嘉義縣鹿草鄉<br>
+#原料：愛文芒果<br>
+#重量規格：原味愛文芒果乾80g<br>
+#產品售價：每包120元<br>
+#保存：冷藏3個月<br>
+#商品介紹：自產自銷，採預訂制，待採收後再行烘培，依訂購順序付款後新鮮出貨<br>
+採用新鮮整顆水果切片，低溫長時間製作<br>
+水果乾(片)為季節限定，依當季水果生產而有不同變化<br>
+*請避免陽光直射<br>
+因我們都是純手工製作，下單前請先確認是否有貨，如沒有可能要煩請等後幾天<br>
+【低溫烘培技術】<br>
+為了使果乾Q彈並鎖住果膠！每2小時就要翻面一次，非常耗工！相對成本也非常高，如果不這麼做的話，烤出來的果乾就會乾乾扁扁的哦！<br>
+【自然甜味甜而不膩】<br>
+果乾的甜味來自低溫烘培鎖住果膠，自然甜而不膩，相對加了砂糖調味的果乾來說，風味可是完全不同的哦！<br>
+</div> 
+</div>
+</body>
+</html>
+    `)
 }
 
 export function water(user) {
@@ -348,12 +440,12 @@ export function water(user) {
   ` )
 }
 
-export function car() {
+export function car(user) {
   return layout('car', `
     <html>
       <body>
-        <title>car</title>
-        <p>購物車</p>
+        <title>Shopcar</title>
+        <p>${user}的購物車</p>
       </body>
     </html>
   ` )
