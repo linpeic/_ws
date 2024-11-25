@@ -323,12 +323,12 @@ export function dry1(user){
  訂購資訊：<br>
   <label style="font-size:15px;">售價：每包120元 重量：80g</label>
   
-  <form action="/${user}/car" method="post"><br>
-  <input type="hidden" name="product" value="愛文狗乾">
+  <form action="/${user}/car/add" method="post"><br>
+  <input type="hidden" name="product" value="愛文芒果">
   <div class="quantity"style="font-size:15px;" >訂購數量(包)：
-  <input type="number" id="quantity" name="quantity" min="1" max="20">
+  <input type="number" name="quantity" value="1"  min="1" max="20" required>
   </div>
-  <input type="submit" value="送出" style="width:auto; text-align:center; font-size:10px;">
+  <input type="submit" value="加入購物車" style="width:auto; text-align:center; font-size:10px;">
   <br>
   </form>
   <br>
@@ -440,13 +440,30 @@ export function water(user) {
   ` )
 }
 
-export function car(user) {
+export function car(user, buylist) {
   return layout('car', `
     <html>
-      <body>
-        <title>Shopcar</title>
-        <p>${user}的購物車</p>
-      </body>
+    <head>
+      <title>${user} 的購物車</title>
+    </head>
+    <body>
+      <h1>${user} 的購物車</h1>
+      <table border="1">
+        <tr>
+          <th>產品名稱</th>
+          <th>數量</th>
+        </tr>
+        ${buylist.map(
+          (item) => `
+          <tr>
+            <td>${item.product}</td>
+            <td>${item.quantity}</td>
+          </tr>
+        `
+        ).join('')}
+      </table>
+      <a href="/${user}/car/add">繼續購物</a>
+    </body>
     </html>
-  ` )
+  `)
 }
