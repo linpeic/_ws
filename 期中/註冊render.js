@@ -35,22 +35,7 @@ export function layout(title, content) {
   `
 }
 
-export function loginUi() {
-  return layout('Login', `
-  <div class="h2"><b>會員登入</b></div>
-  <div style="text-align:left; padding:0px;">
-  <div class="topnav">
-  <a href="/">首頁</a>
-  </div></div><br>
-  <form action="#" method="post">
-    <label for="account">帳號：
-    <input type="text" placeholder="輸入帳號" name="username"><br><br>
-    <label for="password">密碼：
-    <input type="password" placeholder="密碼" name="password">
-    <p><input type="submit" value="送出"></p>
-  </form>
-  `)
-}
+
 
 export function signupUi() {
   return layout('Signup', `
@@ -75,6 +60,22 @@ export function signupUi() {
   <div><input type="submit" value="送出">
   <div class="topnav" style="padding-left:260px;font-size:15px;"><a href="http://127.0.0.1:8000/login">已有帳號!登入</a></div>
   </div>
+  </form>
+  `)
+}
+export function loginUi() {
+  return layout('Login', `
+  <div class="h2"><b>會員登入</b></div>
+  <div style="text-align:left; padding:0px;">
+  <div class="topnav">
+  <a href="/">首頁</a>
+  </div></div><br>
+  <form action="#" method="post">
+    <label for="account">帳號：
+    <input type="text" placeholder="輸入帳號" name="username"><br><br>
+    <label for="password">密碼：
+    <input type="password" placeholder="密碼" name="password">
+    <p><input type="submit" value="送出"></p>
   </form>
   `)
 }
@@ -227,7 +228,7 @@ export function afterlogin(user) {
   </body>
   </html>
   `
-  return layout(`Welcom${user}`, content) // 使用 layout 函式來產生頁面佈局
+  return layout(`Welcom${user}`, content)
 }
 
 export function dry(user) {
@@ -326,7 +327,7 @@ export function dry1(user){
   <form action="/${user}/car/add" method="post"><br>
   <input type="hidden" name="product" value="愛文芒果">
   <div class="quantity"style="font-size:15px;" >訂購數量(包)：
-  <input type="number" name="quantity" value="1"  min="1" max="20" required>
+  <input type="number" name="quantity" min="1" max="20" required>
   </div>
   <input type="submit" value="加入購物車" style="width:auto; text-align:center; font-size:10px;">
   <br>
@@ -439,7 +440,6 @@ export function water(user) {
   </html>
   ` )
 }
-
 export function car(user, buylist) {
   return layout('car', `
     <html>
@@ -452,17 +452,23 @@ export function car(user, buylist) {
         <tr>
           <th>產品名稱</th>
           <th>數量</th>
+          <th>操作</th>
         </tr>
         ${buylist.map(
           (item) => `
           <tr>
             <td>${item.product}</td>
             <td>${item.quantity}</td>
+            <td>
+            <form action="/${user}/car/delete/${item.id}" method="post"><br>
+            <input type="submit" value="移除" style="width:auto; text-align:center; font-size:10px;">
+            </form>
+            </td>
           </tr>
         `
         ).join('')}
       </table>
-      <a href="/${user}/car/add">繼續購物</a>
+      <a href="/${user}">繼續購物</a>
     </body>
     </html>
   `)

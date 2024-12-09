@@ -4,8 +4,9 @@ import { DB } from "https://deno.land/x/sqlite/mod.ts";
 import { Session } from "https://deno.land/x/oak_sessions/mod.ts";
 
 const db = new DB("blog.db");
-db.query("CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT, password TEXT, email TEXT)");
-db.query("CREATE TABLE IF NOT EXISTS car (id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT, product TEXT ,quantity INTEGER)");
+db.query("CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT UNIQUE, password TEXT, email TEXT)");
+db.query("CREATE TABLE IF NOT EXISTS car (id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT, product TEXT, quantity INTEGER, FOREIGN KEY (username) REFERENCES users(username))");
+db.query("PRAGMA foreign_keys = ON");
 
 const router = new Router();
 
@@ -21,18 +22,25 @@ router.get('/', list)
   .get('/:user/water', water)
   .get('/:user/car', car)
   .post('/:user/car/add', addtoCar)
+  .post('/:user/car/delete/:id', deleteItem)
 
 const app = new Application()
+app.use(async (ctx, next) => {
+  if (ctx.request.url.pathname === '/favicon.ico') {
+    ctx.response.status = 204; // 返回 204 無内容
+    return
+  }
+  await next()
+})
 app.use(Session.initMiddleware())
 app.use(router.routes());
-app.use(router.allowedMethods());
+app.use(router.allowedMethods())
+
 
 function sqlcmd(sql,args=[]) {
-// async function sqlcmd(sql, arg1) {
   console.log('sqlsql:', sql)
   try {
     var results =db.query(sql, args)
-    // const results = await db.query(sql, arg1)
     console.log('sqlcmd: results=', results)
     return results
   } catch (error) {
@@ -54,7 +62,6 @@ function userQuery(sql,args=[]) {
 function buyQuery(sql,args=[]) {
   let list = []
   try{
-    // const results = sqlcmd(sql, args)
     for (const [id, username, product, quantity] of sqlcmd(sql, args)) {
       list.push({ id, username, product, quantity })
     }
@@ -113,7 +120,7 @@ async function login(ctx) {
         await ctx.state.session.set('user', user)
         console.log('session.user=', await ctx.state.session.get('user'))
         ctx.response.redirect(`/${user.username}`)
-      } else {
+      }else {
         ctx.response.body =`
           <html>
             <body>
@@ -125,13 +132,24 @@ async function login(ctx) {
           </html>
         ` 
       }
+    }else {
+      ctx.response.body =`
+        <html>
+          <body>
+            <title>Errorrrrrrr</title>
+            <p>登入錯誤，請確認帳號或密碼是否正確</p>
+            <p><a href="/login">重新登入</a></p>
+            <p><a href="/signup">註冊</a></p>
+          </body>
+        </html>
+      ` 
     }
   }
 }
 
 async function logout(ctx) {
-   await ctx.state.session.set('user', null)
-   ctx.response.redirect('/')
+  await ctx.state.session.set('user', null)
+  ctx.response.redirect('/')
 }
 
 async function list(ctx) {
@@ -140,6 +158,7 @@ async function list(ctx) {
 
 async function afterlogin(ctx) {
   const user = ctx.params.user
+  await ctx.state.session.set('user',{ username: user })
   console.log('userafterlogin=', user)
   ctx.response.body = await render.afterlogin(user)
 }
@@ -163,10 +182,11 @@ async function water(ctx) {
 }
 
 async function car(ctx) {
-  const user = ctx.params.user
-
-  var buylist = buyQuery(`SELECT id, username,product,quantity FROM car WHERE username=?`,[user])
- 
+  const sessionUser = await ctx.state.session.get('user');
+  const user = sessionUser.username;
+  console.log('Session user:', await ctx.state.session.get('user'));
+  var buylist =await buyQuery(`SELECT id, username,product,quantity FROM car WHERE username=?`,[user])
+  console.log("car:username:",user) 
   console.log('buy=', buylist)
   ctx.response.body = await render.car(user, buylist)
 
@@ -174,18 +194,14 @@ async function car(ctx) {
 
 async function addtoCar(ctx) {
   const body = ctx.request.body
+  const sessionUser = await ctx.state.session.get('user')
+  console.log('Session user:', sessionUser)
   if (body.type() === "form") {
-    const formData = await parseFormBody(body); // 解析表單資料
-    const { product, quantity } = formData;
-    // var user = await ctx.state.session.get('user')
-    const user = ctx.params.user
-    if (user != null) {
-      console.log('user=', user)
+    const formData = await parseFormBody(body)
+    const { product, quantity } = formData
+    if (sessionUser != null) {
       try{
-        sqlcmd("INSERT INTO car (username,product,quantity) VALUES (?, ?, ?)", [user.username, product, parseInt(quantity)]);
-        console.log("addtocar:username:",user.username) 
-        console.log("addtocar:product:",product)
-        console.log("addtocar:quantity:",parseInt(quantity))
+        sqlcmd("INSERT INTO car (username,product,quantity) VALUES (?, ?, ?)", [sessionUser.username, product, parseInt(quantity)]);
       }
       catch(error){
         `<html>
@@ -199,8 +215,18 @@ async function addtoCar(ctx) {
     else {
       ctx.throw(404, 'not login yet!');
     }
-    ctx.response.redirect(`/${user}/car`)
+    ctx.response.redirect(`/${sessionUser.username}/car`)
   }
+}
+
+async function deleteItem(ctx) {
+  const user= ctx.params.user
+  var id = ctx.params.id
+  console.log(`User: ${user}, Deleting item ID: ${id}`)
+  await buyQuery(`DELETE FROM car WHERE id=? AND username=?`, [id, user])
+
+  ctx.response.redirect(`/${user}/car`);
+ 
 }
 
 console.log('Server run at http://127.0.0.1:8000')
