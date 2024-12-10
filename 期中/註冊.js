@@ -17,6 +17,7 @@ router.get('/', list)
   .post('/login', login)
   .get('/logout', logout)
   .get('/:user', afterlogin)
+  .get('/:user/QA', QA)
   .get('/:user/dry', dry)
   .get('/:user/dry1', dry1)
   .get('/:user/dry2', dry2) 
@@ -140,13 +141,19 @@ async function login(ctx) {
                     background-size: cover;
                     background-repeat: no-repeat;
                   }
+              .topnav a {
+                float: left;
+                display: block;
+                text-align: left;
+                text-decoration: none;
+                color: rgb(28, 96, 231);
+              }
             </style>
             <body>
                 <title>Errorrrrrrr</title>
                 <br><br>
                 <h1 style="font-size:20px">登入錯誤 請確認帳號或密碼是否正確</h1>
-                <p><a href="/login">重新登入</a><br><a href="/signup">註冊</a></p>
-             
+                <div class="topnav "><p><a href="/login">重新登入</a><a href="/signup">註冊</a></p></div>
             </body>
         </html>
         ` 
@@ -162,13 +169,19 @@ async function login(ctx) {
                     background-size: cover;
                     background-repeat: no-repeat;
                   }
+              .topnav a {
+                float: left;
+                display: block;
+                text-align: left;
+                text-decoration: none;
+                color: rgb(28, 96, 231);
+              }
             </style>
             <body>
                 <title>Errorrrrrrr</title>
                 <br><br>
                 <h1 style="font-size:20px">登入錯誤 請確認帳號或密碼是否正確</h1>
-                <p><a href="/login">重新登入</a><br><a href="/signup">註冊</a></p>
-             
+                <div class="topnav "><p><a href="/login">重新登入</a><br><a href="/signup">註冊</a></p></div>
             </body>
         </html>
       ` 
@@ -190,6 +203,11 @@ async function afterlogin(ctx) {
   await ctx.state.session.set('user',{ username: user })
   console.log('userafterlogin=', user)
   ctx.response.body = await render.afterlogin(user)
+}
+async function QA(ctx) {
+  const user = ctx.params.user
+  console.log('userdry=', user)
+  ctx.response.body = await render.QA(user)
 }
 async function dry(ctx) {
   const user = ctx.params.user
