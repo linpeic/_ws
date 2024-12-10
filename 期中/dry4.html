@@ -1,6 +1,6 @@
 <html>
 <head>
-  <link rel="stylesheet" href="drytemplate.css">
+  <link rel="stylesheet" href="https://linpeic.github.io/ws/%E6%9C%9F%E4%B8%AD/drytemplate.css">
 </head>
 <body>
 <div style="text-align: left; padding-left:0px;">
@@ -21,13 +21,15 @@
   <div class="item2">
 訂購資訊：<br>
   <label style="font-size:15px;">售價：每包120元 重量：90g</label>
-  <form action="/action_page.php"><br>
-    <div class="quantity" style="font-size:15px;" >訂購數量(包)：
-    <input type="number" id="quantity" name="quantity" min="1" max="20">
-    </div>
-    <input type="submit" value="送出" style="width:auto; text-align:center; font-size:10px;">
-    <br>
-    </form>
+  <form action="/${user}/car/add" method="post"><br>
+  <input type="hidden" name="product" value="原味火龍果乾">
+  <div class="quantity"style="font-size:15px;" >訂購數量(包)：
+  <input type="number" name="quantity" min="1" max="20" required>
+  </div>
+  <input type="submit" value="加入購物車" style="width:auto; text-align:center; font-size:10px;">
+  <br>
+  </form>
+
     <br>
   #交易付款方式：轉帳付款<br>
   #運費計算：<br>

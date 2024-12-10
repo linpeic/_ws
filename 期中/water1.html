@@ -1,6 +1,6 @@
 <html>
 <head>
-  <link rel="stylesheet" href="watertemplate.css">
+  <link rel="stylesheet" href="https://linpeic.github.io/ws/%E6%9C%9F%E4%B8%AD/watertemplate.css">
 </head>
 <body>
 <div style="text-align: left; padding-left:0px;">
@@ -11,18 +11,19 @@
 <br>
 <div class="grid-container">
   <div class="item1">
-  <img src="w1.jpg" alt="芒芒遇見你"  style="width:280px; font-size:30px; padding:0px;">
+  <img src="https://raw.githubusercontent.com/linpeic/ws/master/期中/w1.jpg" alt="芒芒遇見你"  style="width:280px; font-size:30px; padding:0px;">
   <div  style="font-size:25px;"> 芒芒遇見你</div><br>
  <p style="font-size:14px;">當芒果乾與蘋果乾相遇，是一場美好的邂逅。<br>尾韻帶有土芭樂及檸檬的香氣，為這場邂逅增添了新的火花。<br></p>
   </div>
   <div class="item2">
  訂購資訊：<br>
   <label style="font-size:15px;">售價：每包100元 重量規格：內含6小包，每小包(16g+-1g)</label>
-  <form action="/action_page.php"><br>
-  <div class="quantity" style="font-size:15px;" >訂購數量(包)：
-  <input type="number" id="quantity" name="quantity" min="1" max="20">
+  <form action="/${user}/car/add" method="post"><br>
+  <input type="hidden" name="product" value="芒芒遇見你">
+  <div class="quantity"style="font-size:15px;" >訂購數量(包)：
+  <input type="number" name="quantity" min="1" max="20" required>
   </div>
-  <input type="submit" value="送出" style="width:auto; text-align:center; font-size:10px;">
+  <input type="submit" value="加入購物車" style="width:auto; text-align:center; font-size:10px;">
   <br>
   </form>
   <br>

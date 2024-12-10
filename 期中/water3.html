@@ -1,6 +1,6 @@
 <html>
 <head>
-  <link rel="stylesheet" href="watertemplate.css">
+  <link rel="stylesheet" href="https://linpeic.github.io/ws/%E6%9C%9F%E4%B8%AD/watertemplate.css">
 </head>
 <body>
 <div style="text-align: left; padding-left:0px;">
@@ -12,18 +12,19 @@
 <br>
 <div class="grid-container">
   <div class="item1">
-  <img src="w3.jpg" alt="紅心土芭樂乾"  style="width:250px; font-size:30px;  padding:0px;">
+  <img src="https://raw.githubusercontent.com/linpeic/ws/master/期中/w3.jpg" alt="紅心土芭樂乾"  style="width:250px; font-size:30px;  padding:0px;">
   <div  style="font-size:25px;"> 紅心土芭樂乾</div><br>
   <p style="font-size:15px;">採用自然生長的紅心土芭樂果實，切成薄片曬乾後製成芭樂乾<br>香氣濃厚、口感甘醇，加熱水沖泡就能喝到清晰自然的果香味<br>紅心土芭樂茶帶微微的果香與特殊輕澀味清爽，少負擔<br>暖心暖胃，口口回甘，單純又美好的茶飲！<br></p>
   </div>
   <div class="item2">
  訂購資訊：<br>
   <label style="font-size:15px;">售價：每包120元 重量：80g</label>
-  <form action="/action_page.php"><br>
-  <div class="quantity" style="font-size:15px;" >訂購數量(包)：
-  <input type="number" id="quantity" name="quantity" min="1" max="20">
+  <form action="/${user}/car/add" method="post"><br>
+  <input type="hidden" name="product" value="紅心土芭樂乾">
+  <div class="quantity"style="font-size:15px;" >訂購數量(包)：
+  <input type="number" name="quantity" min="1" max="20" required>
   </div>
-  <input type="submit" value="送出" style="width:auto; text-align:center; font-size:10px;">
+  <input type="submit" value="加入購物車" style="width:auto; text-align:center; font-size:10px;">
   <br>
   </form>
   <br>

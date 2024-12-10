@@ -18,8 +18,17 @@ router.get('/', list)
   .get('/logout', logout)
   .get('/:user', afterlogin)
   .get('/:user/dry', dry)
-  .get('/:user/dry1', dry1) 
+  .get('/:user/dry1', dry1)
+  .get('/:user/dry2', dry2) 
+  .get('/:user/dry3', dry3)  
+  .get('/:user/dry4', dry4) 
+  .get('/:user/dry5', dry5) 
+  .get('/:user/dry6', dry6) 
   .get('/:user/water', water)
+  .get('/:user/water1', water1)
+  .get('/:user/water2', water2)
+  .get('/:user/water3', water3)
+  .get('/:user/water4', water4)
   .get('/:user/car', car)
   .post('/:user/car/add', addtoCar)
   .post('/:user/car/delete/:id', deleteItem)
@@ -187,18 +196,62 @@ async function dry(ctx) {
   console.log('userdry=', user)
   ctx.response.body = await render.dry(user)
 }
-
 async function dry1(ctx) {
   const user = ctx.params.user
   console.log('userdry=', user)
-
   ctx.response.body = await render.dry1(user)
+}
+async function dry2(ctx) {
+  const user = ctx.params.user
+  console.log('userdry=', user)
+  ctx.response.body = await render.dry2(user)
+}
+async function dry3(ctx) {
+  const user = ctx.params.user
+  console.log('userdry=', user)
+  ctx.response.body = await render.dry3(user)
+}
+async function dry4(ctx) {
+  const user = ctx.params.user
+  console.log('userdry=', user)
+  ctx.response.body = await render.dry4(user)
+}
+async function dry5(ctx) {
+  const user = ctx.params.user
+  console.log('userdry=', user)
+  ctx.response.body = await render.dry5(user)
+}
+async function dry6(ctx) {
+  const user = ctx.params.user
+  console.log('userdry=', user)
+  ctx.response.body = await render.dry6(user)
 }
 
 async function water(ctx) {
   const user = ctx.params.user 
   console.log('userdry=', user)
   ctx.response.body = await render.water(user) 
+}
+
+async function water1(ctx) {
+  const user = ctx.params.user 
+  console.log('userdry=', user)
+  ctx.response.body = await render.water1(user) 
+}
+async function water2(ctx) {
+  const user = ctx.params.user 
+  console.log('userdry=', user)
+  ctx.response.body = await render.water2(user) 
+}
+async function water3(ctx) {
+  const user = ctx.params.user 
+  console.log('userdry=', user)
+  ctx.response.body = await render.water3(user) 
+}
+async function water4(ctx) {
+  const user = ctx.params.user 
+  console.log('userdry=', user)
+  ctx.response.body = await render.water4(user) 
 }
 
 async function car(ctx) {
