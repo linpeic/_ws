@@ -10,7 +10,7 @@
 登入網頁
 我的購物車
 常見問題網頁
-有把相同的css寫在一起
+有把相同的css寫在一起，實現註冊、登入、登出、加入購物車功能
 ## 參考資料
 [上課內容應用](https://github.com/ccc113a/html2denojs/tree/master/02-%E5%BE%8C%E7%AB%AF/07-session)
 使用chatgpt協助debug
