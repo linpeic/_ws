@@ -323,7 +323,7 @@ export function dry1(user){
 <div style="text-align: left; padding-left:0px;">
 <h1> 原味愛文芒果</h1>
 <div class="topnav ">
-  <a href="https://linpeic.github.io/ws/%E6%9C%9F%E4%B8%AD/main.html">
+  <a href="/${user}">
   首頁</a> < 原味愛文芒果 >
   <a href="https://linpeic.github.io/ws/%E6%9C%9F%E4%B8%AD/%E6%9E%9C%E4%B9%BE.html">
   果乾系列</a>
@@ -414,7 +414,7 @@ export function dry2(user){
 <div style="text-align: left; padding-left:0px;">
 <h1>原味紅龍果乾</h1>
 <div class="topnav ">
-   <a href="https://linpeic.github.io/ws/%E6%9C%9F%E4%B8%AD/main.html">
+   <a href="/${user}">
   首頁</a> < 原味紅龍果乾 >
   <a href="https://linpeic.github.io/ws/%E6%9C%9F%E4%B8%AD/%E6%9E%9C%E4%B9%BE.html">
   果乾系列</a>
@@ -506,7 +506,7 @@ export function dry3(user){
 <div style="text-align: left; padding-left:0px;">
 <h1>甘草芭樂乾</h1>
 <div class="topnav ">
-   <a href="https://linpeic.github.io/ws/%E6%9C%9F%E4%B8%AD/main.html">
+   <a href="/${user}">
   首頁</a>  
   <a href="https://linpeic.github.io/ws/%E6%9C%9F%E4%B8%AD/%E6%9E%9C%E4%B9%BE.html">
   果乾系列</a>< 甘草芭樂乾 >
@@ -599,7 +599,7 @@ export function dry4(user){
 <div style="text-align: left; padding-left:0px;">
 <h1>原味火龍果乾</h1>
 <div class="topnav ">
-     <a href="https://linpeic.github.io/ws/%E6%9C%9F%E4%B8%AD/main.html">
+     <a href="/${user}">
   首頁</a>  
   <a href="https://linpeic.github.io/ws/%E6%9C%9F%E4%B8%AD/%E6%9E%9C%E4%B9%BE.html">
   果乾系列</a>< 原味火龍果乾 >
@@ -690,7 +690,7 @@ export function dry5(user){
 <div style="text-align: left; padding-left:0px;">
 <h1>原味香蕉乾</h1>
 <div class="topnav ">
-<a href="https://linpeic.github.io/ws/%E6%9C%9F%E4%B8%AD/main.html">
+<a href="/${user}"
   首頁</a>  
   <a href="https://linpeic.github.io/ws/%E6%9C%9F%E4%B8%AD/%E6%9E%9C%E4%B9%BE.html">
   果乾系列</a> < 原味香蕉乾 >
@@ -781,7 +781,7 @@ export function dry6(user){
 <div style="text-align: left; padding-left:0px;">
 <h1>原味芭蕉乾</h1>
  <div class="topnav ">
-<a href="https://linpeic.github.io/ws/%E6%9C%9F%E4%B8%AD/main.html">
+<a href="/${user}">
   首頁</a>  
   <a href="https://linpeic.github.io/ws/%E6%9C%9F%E4%B8%AD/%E6%9E%9C%E4%B9%BE.html">
   果乾系列</a>< 原味芭蕉乾 >
@@ -922,7 +922,7 @@ export function water1(user){
 <body>
 <div style="text-align: left; padding-left:0px;">
 <h1>芒芒遇見你</h1> <div class="topnav ">
-  <a href="https://linpeic.github.io/ws/%E6%9C%9F%E4%B8%AD/main.html">首頁</a>
+  <a href="/${user}">首頁</a>
 <a href="https://linpeic.github.io/ws/%E6%9C%9F%E4%B8%AD/%E6%B0%B4%E6%9E%9C%E8%8C%B6.html">水果茶系列 </a>< 芒芒遇見你 >
 </div></div>
 <br>
@@ -1017,7 +1017,7 @@ export function water2(user){
 <div style="text-align: left; padding-left:0px;">
 <h1>粉紅泡泡</h1>
  <div class="topnav ">
- <a href="https://linpeic.github.io/ws/%E6%9C%9F%E4%B8%AD/main.html">首頁</a>
+ <a href="/${user}">首頁</a>
 <a href="https://linpeic.github.io/ws/%E6%9C%9F%E4%B8%AD/%E6%B0%B4%E6%9E%9C%E8%8C%B6.html">水果茶系列 </a>< 粉紅泡泡 >
 </div></div>
 <br>
@@ -1108,7 +1108,7 @@ export function water3(user){
 <div style="text-align: left; padding-left:0px;">
 <h1>紅心土芭樂乾</h1>
   <div class="topnav ">
- <a href="https://linpeic.github.io/ws/%E6%9C%9F%E4%B8%AD/main.html">首頁</a>
+ <a href="/${user}">首頁</a>
 <a href="https://linpeic.github.io/ws/%E6%9C%9F%E4%B8%AD/%E6%B0%B4%E6%9E%9C%E8%8C%B6.html">水果茶系列 </a>< 紅心土芭樂乾 >
 </div></div>
 <br>
@@ -1202,7 +1202,7 @@ export function water4(user){
 <div style="text-align: left; padding-left:0px;">
 <h1>洛神花果醬</h1>
    <div class="topnav ">
- <a href="https://linpeic.github.io/ws/%E6%9C%9F%E4%B8%AD/main.html">首頁</a>
+ <a href="/${user}">首頁</a>
 <a href="https://linpeic.github.io/ws/%E6%9C%9F%E4%B8%AD/%E6%B0%B4%E6%9E%9C%E8%8C%B6.html">水果茶系列 </a>< 洛神花果醬 > 
 </div></div>
 <br>
