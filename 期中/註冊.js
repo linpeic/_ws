@@ -123,24 +123,44 @@ async function login(ctx) {
       }else {
         ctx.response.body =`
           <html>
+            <style>
+             *{padding-left:17%;
+                padding-right:12%;}
+              body {
+                    background-image: url('https://raw.githubusercontent.com/linpeic/ws/master/期中/芒果園.jpg');
+                    background-size: cover;
+                    background-repeat: no-repeat;
+                  }
+            </style>
             <body>
-              <title>Errorrrrrrr</title>
-              <p>登入錯誤，請確認帳號或密碼是否正確</p>
-              <p><a href="/login">重新登入</a></p>
-              <p><a href="/signup">註冊</a></p>
+                <title>Errorrrrrrr</title>
+                <br><br>
+                <h1 style="font-size:20px">登入錯誤 請確認帳號或密碼是否正確</h1>
+                <p><a href="/login">重新登入</a><br><a href="/signup">註冊</a></p>
+             
             </body>
-          </html>
+        </html>
         ` 
       }
     }else {
       ctx.response.body =`
         <html>
-          <body>
-            <title>Errorrrrrrr</title>
-            <p>登入錯誤，請確認帳號或密碼是否正確</p>
-            <p><a href="/login">重新登入</a></p>
-            <p><a href="/signup">註冊</a></p>
-          </body>
+            <style>
+             *{padding-left:17%;
+                padding-right:12%;}
+              body {
+                    background-image: url('https://raw.githubusercontent.com/linpeic/ws/master/期中/芒果園.jpg');
+                    background-size: cover;
+                    background-repeat: no-repeat;
+                  }
+            </style>
+            <body>
+                <title>Errorrrrrrr</title>
+                <br><br>
+                <h1 style="font-size:20px">登入錯誤 請確認帳號或密碼是否正確</h1>
+                <p><a href="/login">重新登入</a><br><a href="/signup">註冊</a></p>
+             
+            </body>
         </html>
       ` 
     }

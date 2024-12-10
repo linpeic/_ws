@@ -20,7 +20,7 @@ export function layout(title, content) {
         color: rgb(28, 96, 231);
       }
       body {
-        background-image: url('https://raw.githubusercontent.com/linpeic/ws/master/期中/芒果園.jpg');
+        // background-image: url('https://raw.githubusercontent.com/linpeic/ws/master/期中/芒果園.jpg');
         background-size: cover;
         background-repeat: no-repeat;
       }
@@ -39,6 +39,15 @@ export function layout(title, content) {
 
 export function signupUi() {
   return layout('Signup', `
+  <html>
+  <style>
+   body {
+        background-image: url('https://raw.githubusercontent.com/linpeic/ws/master/期中/芒果園.jpg');
+        background-size: cover;
+        background-repeat: no-repeat;
+      }
+  </style>
+  <body>
   <div class="h2"><b>新用戶註冊</b>
   </div>
   <div style="text-align:left; padding:0px;">
@@ -61,10 +70,21 @@ export function signupUi() {
   <div class="topnav" style="padding-left:260px;font-size:15px;"><a href="http://127.0.0.1:8000/login">已有帳號!登入</a></div>
   </div>
   </form>
+  </body>
+  </html>
   `)
 }
 export function loginUi() {
   return layout('Login', `
+  <html>
+  <style>
+   body {
+        background-image: url('https://raw.githubusercontent.com/linpeic/ws/master/期中/芒果園.jpg');
+        background-size: cover;
+        background-repeat: no-repeat;
+      }
+  </style>
+  <body>
   <div class="h2"><b>會員登入</b></div>
   <div style="text-align:left; padding:0px;">
   <div class="topnav">
@@ -77,6 +97,8 @@ export function loginUi() {
     <input type="password" placeholder="密碼" name="password">
     <p><input type="submit" value="送出"></p>
   </form>
+  </body>
+  </html>
   `)
 }
 
@@ -162,7 +184,7 @@ export function list() {
   </body>
   </html>
   `
-  return layout('Posts', content)
+  return layout('Welcome', content)
 }
 
 export function afterlogin(user) {
@@ -189,7 +211,7 @@ export function afterlogin(user) {
 
   <p style="text-align:center;font-size:22px; padding-bottom:20px;padding-top:20px; padding-right:10px; color:white;"><b>其他</b></p><hr><hr>
   <br>
-  <div style="text-align:center;font-size:16px;padding-right:10px;"> <a href="/signup">註冊/登入</a></div>
+  <div style="text-align:center;font-size:16px;padding-right:10px;"> <a href="/">登出</a></div>
   <br>
   <div style="text-align:center;font-size:16px;padding-right:10px;"> <a href="/${user}/car">我的購物車</a></div>
   <br>
@@ -444,15 +466,43 @@ export function car(user, buylist) {
   return layout('car', `
     <html>
     <head>
-      <title>${user} 的購物車</title>
+      <style>
+        *{padding-left:12%;
+          padding-right:12%;}
+          table 
+        {
+          font-family: arial, sans-serif;
+          border-collapse: collapse;
+          width:100%;
+        }
+        body {
+          background-image: url('https://raw.githubusercontent.com/linpeic/ws/master/期中/芒果園.jpg');
+          background-size: cover;
+          background-repeat: no-repeat;
+        }
+        td{
+         border: 1px solid #dddddd;
+         text-align: center;
+         padding: 5px;
+         background-color:white
+        }
+        
+        th{
+          border: 1px solid #dddddd;
+          text-align: center;
+          padding: 5px;
+          color:white;
+          background-color:rgb(141,152,129)
+        }
+      </style>
     </head>
     <body>
-      <h1>${user} 的購物車</h1>
-      <table border="1">
+      <h1 style="font-size:35px; text-align:center;">${user} 的購物車</h1>
+      <table>
         <tr>
           <th>產品名稱</th>
           <th>數量</th>
-          <th>操作</th>
+          <th>移除商品</th>
         </tr>
         ${buylist.map(
           (item) => `
@@ -460,8 +510,8 @@ export function car(user, buylist) {
             <td>${item.product}</td>
             <td>${item.quantity}</td>
             <td>
-            <form action="/${user}/car/delete/${item.id}" method="post"><br>
-            <input type="submit" value="移除" style="width:auto; text-align:center; font-size:10px;">
+           <form action="/${user}/car/delete/${item.id}" method="post"><br>
+           <input type="submit" value="移除"  style="width:auto; text-align:center; font-size:10px;">
             </form>
             </td>
           </tr>
