@@ -19,11 +19,6 @@ export function layout(title, content) {
         text-decoration: none;
         color: rgb(28, 96, 231);
       }
-      body {
-        // background-image: url('https://raw.githubusercontent.com/linpeic/ws/master/期中/芒果園.jpg');
-        background-size: cover;
-        background-repeat: no-repeat;
-      }
     </style>
   </head>
   <body>
@@ -39,33 +34,27 @@ export function signupUi() {
   <html>
   <style>
    body {
-        background-image: url('https://raw.githubusercontent.com/linpeic/ws/master/期中/芒果園.jpg');
-        background-size: cover;
-        background-repeat: no-repeat;
-      }
+    background-image: url('https://raw.githubusercontent.com/linpeic/ws/master/期中/芒果園.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
   </style>
   <body>
-  <div class="h2"><b>新用戶註冊</b>
-  </div>
+  <div class="h2"><b>新用戶註冊</b></div>
   <div style="text-align:left; padding:0px;">
   <div class="topnav">
-  <a href="/">首頁</a>
-  </div></div><br>
-
+  <a href="/">首頁</a></div></div><br>
   <form action="/signup" method="post" style="font-size: 20px;"> 
   <label for="account">帳號：
   <input type="text" id="username" name="username" name="username"></label><br><br>
   <label for="password">密碼：
   <input type="password" name="password"></label><br><br>
-  
   <label for="email">email：
   <input type="text" placeholder="@email.com" name="email"></label><br><br>
   <label for="phone">手機號碼：
   <input type="tel" id="phone" name="phone" placeholder="09XX-123-456" pattern="[0-9]{4}-[0-9]{3}-[0-9]{3}"></label><br><br>
-
   <div><input type="submit" value="送出">
-  <div class="topnav" style="padding-left:260px;font-size:15px;"><a href="http://127.0.0.1:8000/login">已有帳號!登入</a></div>
-  </div>
+  <div class="topnav" style="padding-left:260px;font-size:15px;"><a href="http://127.0.0.1:8000/login">已有帳號!登入</a></div></div>
   </form>
   </body>
   </html>
@@ -75,24 +64,23 @@ export function loginUi() {
   return layout('Login', `
   <html>
   <style>
-   body {
-        background-image: url('https://raw.githubusercontent.com/linpeic/ws/master/期中/芒果園.jpg');
-        background-size: cover;
-        background-repeat: no-repeat;
-      }
+  body {
+    background-image: url('https://raw.githubusercontent.com/linpeic/ws/master/期中/芒果園.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
   </style>
   <body>
   <div class="h2"><b>會員登入</b></div>
   <div style="text-align:left; padding:0px;">
   <div class="topnav">
-  <a href="/">首頁</a>
-  </div></div><br>
+  <a href="/">首頁</a></div></div><br>
   <form action="#" method="post">
-    <label for="account">帳號：
-    <input type="text" placeholder="輸入帳號" name="username"><br><br>
-    <label for="password">密碼：
-    <input type="password" placeholder="密碼" name="password">
-    <p><input type="submit" value="送出"></p>
+  <label for="account">帳號：
+  <input type="text" placeholder="輸入帳號" name="username"><br><br>
+  <label for="password">密碼：
+  <input type="password" placeholder="密碼" name="password">
+  <p><input type="submit" value="送出"></p>
   </form>
   </body>
   </html>
@@ -133,33 +121,22 @@ export function list() {
   <div class="item2">
   <p style="text-align:center;font-size:22px;padding-bottom:20px; padding-top:5px; padding-right:10px; color:white;"><b>目錄</b></p><hr><hr>
   <br><div style="text-align:center;font-size:16px;padding-right:10px;"> <a
-  href="https://linpeic.github.io/ws/%E6%9C%9F%E4%B8%AD/%E6%9E%9C%E4%B9%BE.html">果乾系列</a></div>
-  <br>
+  href="https://linpeic.github.io/ws/%E6%9C%9F%E4%B8%AD/%E6%9E%9C%E4%B9%BE.html">果乾系列</a></div><br>
   <div style="text-align:center;font-size:16px;padding-right:5px;"><a
   href="https://linpeic.github.io/ws/%E6%9C%9F%E4%B8%AD/%E6%B0%B4%E6%9E%9C%E8%8C%B6.html">水果茶系列</a></div>
   <br><hr><hr>
-
-  <p style="text-align:center;font-size:22px; padding-bottom:20px;padding-top:20px; padding-right:10px; color:white;"><b>其他</b></p><hr><hr>
-  <br>
-  <div style="text-align:center;font-size:16px;padding-right:10px;"> <a href="http://127.0.0.1:8000/signup">註冊/登入</a></div>
-  <br>
+  <p style="text-align:center;font-size:22px; padding-bottom:20px;padding-top:20px; padding-right:10px; color:white;"><b>其他</b></p><hr><hr><br>
+  <div style="text-align:center;font-size:16px;padding-right:10px;"> <a href="http://127.0.0.1:8000/signup">註冊/登入</a></div><br>
   <div style="text-align:center;font-size:16px;padding-right:10px;"> <a href="https://linpeic.github.io/wp/%E6%9C%9F%E4%B8%AD/Q&A.html">常見問題</a></div>
-  </div>
-  </div>
-  </div>
-  </div>
-
+  </div></div></div></div>
   <div class="item3">
   <div class="hi" style="font-size:40px;"><b>真政讚開心果園</b></div><br>
-  <img src="https://raw.githubusercontent.com/linpeic/ws/master/期中/理念.jpg" alt="故事" width="900px">
-  </div>
-  
+  <img src="https://raw.githubusercontent.com/linpeic/ws/master/期中/理念.jpg" alt="故事" width="900px"></div>
   <div class="item5">
   <p style="text-align:center;font-size:15px;"> <br>聯絡我們</p>
   <p style="text-align:center;font-size:15px;"> FaceBook：</p>
   <div class="fanweb" style="text-align:center;font-size:15px;"><a href="https://www.facebook.com/profile.php?id=100063807405001&mibextid=LQQJ4d">真政讚開心果園</a></div>
-  </div>
-  </div>
+  </div></div>
   <script>
   let mode = 'small'
   let sidebar = document.querySelector('#sidebar')
@@ -196,48 +173,32 @@ export function afterlogin(user) {
   <b>歡迎<span id="username-placeholder"><br>${user}</span></b><br><br></div>
   <p style="text-align:center;font-size:22px;padding-bottom:20px; padding-top:5px; padding-right:10px; color:white;"><b>目錄</b></p><hr><hr>
   <br><div style="text-align:center;font-size:16px;padding-right:10px;"> <a
-  href="/${user}/dry">果乾系列</a></div>
-  <br>
-  <div style="text-align:center;font-size:16px;padding-right:5px;"><a
-  href="/${user}/water">水果茶系列</a></div>
-  <br><hr><hr>
-
-  <p style="text-align:center;font-size:22px; padding-bottom:20px;padding-top:20px; padding-right:10px; color:white;"><b>其他</b></p><hr><hr>
-  <br>
-  <div style="text-align:center;font-size:16px;padding-right:10px;"> <a href="/">登出</a></div>
-  <br>
-  <div style="text-align:center;font-size:16px;padding-right:10px;"> <a href="/${user}/car">我的購物車</a></div>
-  <br>
+  href="/${user}/dry">果乾系列</a></div><br>
+  <div style="text-align:center;font-size:16px;padding-right:5px;"><a href="/${user}/water">水果茶系列</a></div><br><hr><hr>
+  <p style="text-align:center;font-size:22px; padding-bottom:20px;padding-top:20px; padding-right:10px; color:white;"><b>其他</b></p><hr><hr><br>
+  <div style="text-align:center;font-size:16px;padding-right:10px;"> <a href="/">登出</a></div><br>
+  <div style="text-align:center;font-size:16px;padding-right:10px;"> <a href="/${user}/car">我的購物車</a></div><br>
   <div style="text-align:center;font-size:16px;padding-right:10px;"> <a href="https://linpeic.github.io/ws/%E6%9C%9F%E4%B8%AD/Q&A.html">常見問題</a></div>
-  </div>
-  </div>
-  </div>
-  </div>
-
+  </div></div></div></div>
   <div class="item3">
   <div class="hi" style="font-size:40px;"><b>真政讚開心果園</b></div><br>
-  <img src="https://raw.githubusercontent.com/linpeic/ws/master/期中/理念.jpg" alt="故事" width="900px">
-  </div>
-  
+  <img src="https://raw.githubusercontent.com/linpeic/ws/master/期中/理念.jpg" alt="故事" width="900px"></div>
   <div class="item5">
   <p style="text-align:center;font-size:15px;"> <br>聯絡我們</p>
   <p style="text-align:center;font-size:15px;"> FaceBook：</p>
   <div class="fanweb" style="text-align:center;font-size:15px;"><a href="https://www.facebook.com/profile.php?id=100063807405001&mibextid=LQQJ4d">真政讚開心果園</a></div>
-  </div>
-  </div>
+  </div></div>
   <script>
   let mode = 'small'
   let sidebar = document.querySelector('#sidebar')
   function turn() {
-   if (mode == 'small')
-   {
+   if (mode == 'small'){
       mode = 'large'
       sidebar.style.width = "250px"
-   }else 
-   {
+    }else {
       mode = 'small'
       sidebar.style.width = "20px"
-   }
+    }
   }
   </script>
   </body>
@@ -245,7 +206,6 @@ export function afterlogin(user) {
   `
   return layout(`Welcom${user}`, content)
 }
-
 export function dry(user) {
   return layout('dry', `
   <html>
@@ -325,7 +285,7 @@ export function dry1(user){
 <div class="topnav ">
   <a href="/${user}">
   首頁</a> < 原味愛文芒果 >
-  <a href="https://linpeic.github.io/ws/%E6%9C%9F%E4%B8%AD/%E6%9E%9C%E4%B9%BE.html">
+  <a href="/${user}/dry">
   果乾系列</a>
 </div></div>
 <br>
@@ -416,7 +376,7 @@ export function dry2(user){
 <div class="topnav ">
    <a href="/${user}">
   首頁</a> < 原味紅龍果乾 >
-  <a href="https://linpeic.github.io/ws/%E6%9C%9F%E4%B8%AD/%E6%9E%9C%E4%B9%BE.html">
+  <a href="/${user}/dry">
   果乾系列</a>
 </div></div>
 <br>
@@ -508,7 +468,7 @@ export function dry3(user){
 <div class="topnav ">
    <a href="/${user}">
   首頁</a>  
-  <a href="https://linpeic.github.io/ws/%E6%9C%9F%E4%B8%AD/%E6%9E%9C%E4%B9%BE.html">
+  <a href="/${user}/dry">
   果乾系列</a>< 甘草芭樂乾 >
 </div></div>
 <br>
@@ -599,9 +559,9 @@ export function dry4(user){
 <div style="text-align: left; padding-left:0px;">
 <h1>原味火龍果乾</h1>
 <div class="topnav ">
-     <a href="/${user}">
+  <a href="/${user}">
   首頁</a>  
-  <a href="https://linpeic.github.io/ws/%E6%9C%9F%E4%B8%AD/%E6%9E%9C%E4%B9%BE.html">
+  <a href="/${user}/dry">
   果乾系列</a>< 原味火龍果乾 >
 </div></div>
 <br>
@@ -690,11 +650,7 @@ export function dry5(user){
 <div style="text-align: left; padding-left:0px;">
 <h1>原味香蕉乾</h1>
 <div class="topnav ">
-<a href="/${user}"
-  首頁</a>  
-  <a href="https://linpeic.github.io/ws/%E6%9C%9F%E4%B8%AD/%E6%9E%9C%E4%B9%BE.html">
-  果乾系列</a> < 原味香蕉乾 >
-</div></div>
+<a href="/${user}">首頁</a> <a href="/${user}/dry">果乾系列</a> < 原味香蕉乾 ></div></div>
 <br>
 <div class="grid-container">
   <div class="item1">
@@ -783,7 +739,7 @@ export function dry6(user){
  <div class="topnav ">
 <a href="/${user}">
   首頁</a>  
-  <a href="https://linpeic.github.io/ws/%E6%9C%9F%E4%B8%AD/%E6%9E%9C%E4%B9%BE.html">
+  <a href="/${user}/dry">
   果乾系列</a>< 原味芭蕉乾 >
 </div></div>
 <br>
@@ -923,7 +879,7 @@ export function water1(user){
 <div style="text-align: left; padding-left:0px;">
 <h1>芒芒遇見你</h1> <div class="topnav ">
   <a href="/${user}">首頁</a>
-<a href="https://linpeic.github.io/ws/%E6%9C%9F%E4%B8%AD/%E6%B0%B4%E6%9E%9C%E8%8C%B6.html">水果茶系列 </a>< 芒芒遇見你 >
+<a href="/${user}/water">水果茶系列 </a>< 芒芒遇見你 >
 </div></div>
 <br>
 <div class="grid-container">
@@ -1018,7 +974,7 @@ export function water2(user){
 <h1>粉紅泡泡</h1>
  <div class="topnav ">
  <a href="/${user}">首頁</a>
-<a href="https://linpeic.github.io/ws/%E6%9C%9F%E4%B8%AD/%E6%B0%B4%E6%9E%9C%E8%8C%B6.html">水果茶系列 </a>< 粉紅泡泡 >
+<a href="/${user}/water">水果茶系列 </a>< 粉紅泡泡 >
 </div></div>
 <br>
 <div class="grid-container">
@@ -1109,7 +1065,7 @@ export function water3(user){
 <h1>紅心土芭樂乾</h1>
   <div class="topnav ">
  <a href="/${user}">首頁</a>
-<a href="https://linpeic.github.io/ws/%E6%9C%9F%E4%B8%AD/%E6%B0%B4%E6%9E%9C%E8%8C%B6.html">水果茶系列 </a>< 紅心土芭樂乾 >
+<a href="/${user}/water">水果茶系列 </a>< 紅心土芭樂乾 >
 </div></div>
 <br>
 <div class="grid-container">
@@ -1203,7 +1159,7 @@ export function water4(user){
 <h1>洛神花果醬</h1>
    <div class="topnav ">
  <a href="/${user}">首頁</a>
-<a href="https://linpeic.github.io/ws/%E6%9C%9F%E4%B8%AD/%E6%B0%B4%E6%9E%9C%E8%8C%B6.html">水果茶系列 </a>< 洛神花果醬 > 
+<a href="/${user}/water">水果茶系列 </a>< 洛神花果醬 > 
 </div></div>
 <br>
 <div class="grid-container">
