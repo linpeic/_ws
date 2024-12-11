@@ -840,7 +840,7 @@ export function water4(user){
   </html>
     `)
 }
-export function car(user, buylist) {
+export function car(user, buylist,totalPrice) {
   return layout('car', `
     <html>
     <head>
@@ -883,6 +883,7 @@ export function car(user, buylist) {
       <h1 style="font-size:35px; text-align:center;">${user} 的購物車</h1>
       <table>
         <tr>
+        <h1 style="font-size:20px">總價格:${totalPrice}</h1>
           <th>產品名稱/規格</th><th>數量</th><th>價格</th><th>移除商品</th></tr>
         ${buylist.map(
           (item) => `
@@ -897,7 +898,8 @@ export function car(user, buylist) {
         `
         ).join('')}
       </table>
-     <div class="topnav "> <a href="/${user}">主頁</a><a href="/${user}/water">水果茶系列 </a><a href="/${user}/dry">果乾系列</a></div>
+     <div class="topnav "> <br><a href="/${user}">主頁</a><a href="/${user}/water">水果茶系列 </a><a href="/${user}/dry">果乾系列</a>
+     </div>
     </body>
     </html>
   `)

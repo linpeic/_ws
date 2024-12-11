@@ -46,7 +46,6 @@ app.use(Session.initMiddleware())
 app.use(router.routes());
 app.use(router.allowedMethods())
 
-
 function sqlcmd(sql,args=[]) {
   console.log('sqlsql:', sql)
   try {
@@ -58,8 +57,6 @@ function sqlcmd(sql,args=[]) {
     throw error
   }
 }
-
-
 function userQuery(sql,args=[]) {
   let list = []
   for (const [id,username, password, email] of sqlcmd(sql,args)) {
@@ -81,7 +78,6 @@ function buyQuery(sql,args=[]) {
   }
   return list
 }
-
 async function parseFormBody(body) {
   const pairs = await body.form()
   const obj = {}
@@ -90,11 +86,9 @@ async function parseFormBody(body) {
   }
   return obj
 }
-
 async function signupUi(ctx) {
   ctx.response.body = await render.signupUi()
 }
-
 async function signup(ctx) {
   const body = ctx.request.body
   if (body.type() === "form") {
@@ -110,11 +104,9 @@ async function signup(ctx) {
     }
   }
 }
-
 async function loginUi(ctx) {
   ctx.response.body = await render.loginUi()
 }
-
 async function login(ctx) {
   const body = ctx.request.body
   if (body.type() === "form") {
@@ -182,16 +174,13 @@ async function login(ctx) {
     }
   }
 }
-
 async function logout(ctx) {
   await ctx.state.session.set('user', null)
   ctx.response.redirect('/')
 }
-
 async function list(ctx) {
   ctx.response.body = await render.list();
 }
-
 async function afterlogin(ctx) {
   const user = ctx.params.user
   await ctx.state.session.set('user',{ username: user })
@@ -265,18 +254,23 @@ async function water4(ctx) {
   console.log('userdry=', user)
   ctx.response.body = await render.water4(user) 
 }
-
 async function car(ctx) {
   const sessionUser = await ctx.state.session.get('user');
   const user = sessionUser.username;
   console.log('Session user:', await ctx.state.session.get('user'));
   var buylist =await buyQuery(`SELECT id, username,product,quantity,price FROM car WHERE username=?`,[user])
+
+  let totalPrice = 0
+  for (const item of buylist) {
+
+    const price = parseInt((item.price),10)//10是十進位的意思
+    const quantity = parseInt((item.quantity),10)//10是十進位的意思
+    totalPrice = totalPrice + price * quantity
+  }
   console.log("car:username:",user) 
   console.log('buy=', buylist)
-  ctx.response.body = await render.car(user, buylist)
-
+  ctx.response.body = await render.car(user, buylist,totalPrice)
 }
-
 async function addtoCar(ctx) {
   const body = ctx.request.body 
   const sessionUser = await ctx.state.session.get('user')
@@ -302,15 +296,12 @@ async function addtoCar(ctx) {
     ctx.response.redirect(`/${sessionUser.username}/car`)
   }
 }
-
 async function deleteItem(ctx) {
   const user= ctx.params.user
   var id = ctx.params.id
   console.log(`User: ${user}, Deleting item ID: ${id}`)
   await buyQuery(`DELETE FROM car WHERE id=? AND username=?`, [id, user])
-
   ctx.response.redirect(`/${user}/car`);
- 
 }
 
 console.log('Server run at http://127.0.0.1:8000')
