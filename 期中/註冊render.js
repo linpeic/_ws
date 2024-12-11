@@ -309,6 +309,7 @@ export function dry1(user){
     <label style="font-size:15px;">售價：每包120元 重量：80g</label>
     <form action="/${user}/car/add" method="post"><br>
     <input type="hidden" name="product" value="愛文芒果乾/80g">
+    <input type="hidden" name="price" value="120元">
     <div class="quantity"style="font-size:15px;" >訂購數量(包)：
     <input type="number" name="quantity" min="1" max="20" required></div>
     <input type="submit" value="加入購物車" style="width:auto; text-align:center; font-size:10px;"><br>
@@ -360,6 +361,7 @@ export function dry2(user){
       <label style="font-size:15px;">售價：每包120元 重量：90g</label>
       <form action="/${user}/car/add" method="post"><br>
       <input type="hidden" name="product" value="原味紅龍果乾/90g">
+      <input type="hidden" name="price" value="120元">
       <div class="quantity" style="font-size:15px;" >訂購數量(包)：
       <input type="number" name="quantity" min="1" max="20" required></div>
       <input type="submit" value="加入購物車" style="width:auto; text-align:center; font-size:10px;"><br>
@@ -411,6 +413,7 @@ export function dry3(user){
       <label style="font-size:15px;">售價：每包120元 重量：90g</label>
       <form action="/${user}/car/add" method="post"><br>
       <input type="hidden" name="product" value="甘草芭樂乾/90g">
+      <input type="hidden" name="price" value="120元">
       <div class="quantity"style="font-size:15px;" >訂購數量(包)：
       <input type="number" name="quantity" min="1" max="20" required></div>
       <input type="submit" value="加入購物車" style="width:auto; text-align:center; font-size:10px;"><br>
@@ -462,6 +465,7 @@ export function dry4(user){
     <label style="font-size:15px;">售價：每包120元 重量：90g</label>
     <form action="/${user}/car/add" method="post"><br>
     <input type="hidden" name="product" value="原味火龍果乾/90g">
+    <input type="hidden" name="price" value="120元">
     <div class="quantity"style="font-size:15px;" >訂購數量(包)：
     <input type="number" name="quantity" min="1" max="20" required></div>
     <input type="submit" value="加入購物車" style="width:auto; text-align:center; font-size:10px;"><br>
@@ -513,6 +517,7 @@ export function dry5(user){
     <label style="font-size:15px;">售價：每包120元 重量：100g</label>
     <form action="/${user}/car/add" method="post"><br>
     <input type="hidden" name="product" value="原味香蕉乾/100g">
+    <input type="hidden" name="price" value="120元">
     <div class="quantity"style="font-size:15px;" >訂購數量(包)：
     <input type="number" name="quantity" min="1" max="20" required></div>
     <input type="submit" value="加入購物車" style="width:auto; text-align:center; font-size:10px;"><br>
@@ -564,6 +569,7 @@ export function dry6(user){
     <label style="font-size:15px;">售價：每包120元 重量：100g</label>
     <form action="/${user}/car/add" method="post"><br>
     <input type="hidden" name="product" value="原味芭蕉乾/100g">
+    <input type="hidden" name="price" value="120元">
     <div class="quantity"style="font-size:15px;" >訂購數量(包)：
     <input type="number" name="quantity" min="1" max="20" required></div>
     <input type="submit" value="加入購物車" style="width:auto; text-align:center; font-size:10px;"><br>
@@ -646,6 +652,7 @@ export function water1(user){
       <label style="font-size:15px;">售價：每包100元 重量規格：內含6小包，每小包(16g+-1g)</label>
       <form action="/${user}/car/add" method="post"><br>
       <input type="hidden" name="product" value="芒芒遇見你/(16g+-1g)*6">
+      <input type="hidden" name="price" value="100元">
       <div class="quantity"style="font-size:15px;" >訂購數量(包)：
       <input type="number" name="quantity" min="1" max="20" required></div>
       <input type="submit" value="加入購物車" style="width:auto; text-align:center; font-size:10px;"><br>
@@ -698,6 +705,7 @@ export function water2(user){
       <label style="font-size:15px;">售價：每包100元 重量規格：內含6小包，每小包(16g+-1g)</label>
       <form action="/${user}/car/add" method="post"><br>
       <input type="hidden" name="product" value="粉紅泡泡/(16g+-1g)*6">
+      <input type="hidden" name="price" value="100元">
       <div class="quantity"style="font-size:15px;" >訂購數量(包)：
       <input type="number" name="quantity" min="1" max="20" required></div>
       <input type="submit" value="加入購物車" style="width:auto; text-align:center; font-size:10px;"><br>
@@ -751,6 +759,7 @@ export function water3(user){
     <label style="font-size:15px;">售價：每包120元 重量：80g</label>
     <form action="/${user}/car/add" method="post"><br>
     <input type="hidden" name="product" value="紅心土芭樂乾/80g">
+    <input type="hidden" name="price" value="120元">
     <div class="quantity"style="font-size:15px;" >訂購數量(包)：
     <input type="number" name="quantity" min="1" max="20" required></div>
     <input type="submit" value="加入購物車" style="width:auto; text-align:center; font-size:10px;"><br>
@@ -804,6 +813,7 @@ export function water4(user){
     <label style="font-size:15px;">售價：每瓶200元 容量：370ml</label>
     <form action="/${user}/car/add" method="post"><br>
     <input type="hidden" name="product" value="洛神花果醬/370ml">
+    <input type="hidden" name="price" value="200元">
     <div class="quantity"style="font-size:15px;" >訂購數量(包)：
     <input type="number" name="quantity" min="1" max="20" required></div>
     <input type="submit" value="加入購物車" style="width:auto; text-align:center; font-size:10px;"><br>
@@ -861,24 +871,25 @@ export function car(user, buylist) {
         display: flex;
         overflow: hidden;
         padding: 10px;
-      }
-      .topnav a {
-       margin:0 -10px; 
-       text-decoration: none;
-       color: rgb(28, 96, 231);
-      }
+        }
+        .topnav a {
+        margin:0 -10px; 
+        text-decoration: none;
+        color: rgb(28, 96, 231);
+        }
       </style>
     </head>
     <body>
       <h1 style="font-size:35px; text-align:center;">${user} 的購物車</h1>
       <table>
         <tr>
-          <th>產品名稱/規格</th><th>數量</th><th>移除商品</th></tr>
+          <th>產品名稱/規格</th><th>數量</th><th>價格</th><th>移除商品</th></tr>
         ${buylist.map(
           (item) => `
           <tr>
             <td>${item.product}</td>
             <td>${item.quantity}</td>
+            <td>${item.price}*${item.quantity}</td>
             <td>
            <form action="/${user}/car/delete/${item.id}" method="post"><br>
            <input type="submit" value="移除"  style="width:auto; text-align:center; font-size:10px;">

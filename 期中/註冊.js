@@ -5,7 +5,7 @@ import { Session } from "https://deno.land/x/oak_sessions/mod.ts";
 
 const db = new DB("blog.db");
 db.query("CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT UNIQUE, password TEXT, email TEXT)");
-db.query("CREATE TABLE IF NOT EXISTS car (id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT, product TEXT, quantity INTEGER, FOREIGN KEY (username) REFERENCES users(username))");
+db.query("CREATE TABLE IF NOT EXISTS car (id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT, product TEXT, quantity INTEGER, price INTEGER, FOREIGN KEY (username) REFERENCES users(username))");
 db.query("PRAGMA foreign_keys = ON");
 
 const router = new Router();
@@ -72,8 +72,8 @@ function userQuery(sql,args=[]) {
 function buyQuery(sql,args=[]) {
   let list = []
   try{
-    for (const [id, username, product, quantity] of sqlcmd(sql, args)) {
-      list.push({ id, username, product, quantity })
+    for (const [id, username, product, quantity, price] of sqlcmd(sql, args)) {
+      list.push({ id, username, product, quantity, price })
     }
     console.log('buyQuery: list =', list)
   }catch (error) {
@@ -132,57 +132,51 @@ async function login(ctx) {
         ctx.response.redirect(`/${user.username}`)
       }else {
         ctx.response.body =`
-          <html>
-            <style>
-             *{padding-left:17%;
-                padding-right:12%;}
-              body {
-                    background-image: url('https://raw.githubusercontent.com/linpeic/ws/master/期中/芒果園.jpg');
-                    background-size: cover;
-                    background-repeat: no-repeat;
-                  }
-              .topnav a {
-                float: left;
-                display: block;
-                text-align: left;
-                text-decoration: none;
-                color: rgb(28, 96, 231);
-              }
-            </style>
-            <body>
-                <title>Errorrrrrrr</title>
-                <br><br>
-                <h1 style="font-size:20px">登入錯誤 請確認帳號或密碼是否正確</h1>
-                <div class="topnav "><p><a href="/login">重新登入</a><a href="/signup">註冊</a></p></div>
-            </body>
+        <html>
+        <head>
+        <style>
+        *{padding-left:17%;
+          padding-right:12%;}
+        body{background-image:url('https://raw.githubusercontent.com/linpeic/ws/master/期中/芒果園.jpg');
+          background-size:cover;background-repeat:no-repeat;}
+        .topnav{align-items:center;
+            display:flex;
+                overflow:hidden;}
+        .topnav a{
+              text-decoration:none;
+              color:rgb(28,96,231);}
+        </style>
+        <title>Errorrrrrrr</title>
+        </head>
+        <body><br><br>
+        <h1 style="font-size:20px">登入錯誤 請確認帳號或密碼是否正確</h1>
+        <div class="topnav"><p><a href="/login">重新登入</a><a href="/signup">註冊</a></p></div>
+        </body>
         </html>
         ` 
       }
     }else {
       ctx.response.body =`
         <html>
-            <style>
-             *{padding-left:17%;
-                padding-right:12%;}
-              body {
-                    background-image: url('https://raw.githubusercontent.com/linpeic/ws/master/期中/芒果園.jpg');
-                    background-size: cover;
-                    background-repeat: no-repeat;
-                  }
-              .topnav a {
-                float: left;
-                display: block;
-                text-align: left;
-                text-decoration: none;
-                color: rgb(28, 96, 231);
-              }
-            </style>
-            <body>
-                <title>Errorrrrrrr</title>
-                <br><br>
-                <h1 style="font-size:20px">登入錯誤 請確認帳號或密碼是否正確</h1>
-                <div class="topnav "><p><a href="/login">重新登入</a><br><a href="/signup">註冊</a></p></div>
-            </body>
+        <head>
+        <style>
+        *{padding-left:17%;
+          padding-right:12%;}
+        body{background-image:url('https://raw.githubusercontent.com/linpeic/ws/master/期中/芒果園.jpg');
+          background-size:cover;background-repeat:no-repeat;}
+        .topnav{align-items:center;
+            display:flex;
+                overflow:hidden;}
+        .topnav a{
+              text-decoration:none;
+              color:rgb(28,96,231);}
+        </style>
+        <title>Errorrrrrrr</title>
+        </head>
+        <body><br><br>
+        <h1 style="font-size:20px">登入錯誤 請確認帳號或密碼是否正確</h1>
+        <div class="topnav"><p><a href="/login">重新登入</a><a href="/signup">註冊</a></p></div>
+        </body>
         </html>
       ` 
     }
@@ -276,7 +270,7 @@ async function car(ctx) {
   const sessionUser = await ctx.state.session.get('user');
   const user = sessionUser.username;
   console.log('Session user:', await ctx.state.session.get('user'));
-  var buylist =await buyQuery(`SELECT id, username,product,quantity FROM car WHERE username=?`,[user])
+  var buylist =await buyQuery(`SELECT id, username,product,quantity,price FROM car WHERE username=?`,[user])
   console.log("car:username:",user) 
   console.log('buy=', buylist)
   ctx.response.body = await render.car(user, buylist)
@@ -284,15 +278,15 @@ async function car(ctx) {
 }
 
 async function addtoCar(ctx) {
-  const body = ctx.request.body
+  const body = ctx.request.body 
   const sessionUser = await ctx.state.session.get('user')
   console.log('Session user:', sessionUser)
   if (body.type() === "form") {
     const formData = await parseFormBody(body)
-    const { product, quantity } = formData
+    const { product, quantity, price } = formData
     if (sessionUser != null) {
       try{
-        sqlcmd("INSERT INTO car (username,product,quantity) VALUES (?, ?, ?)", [sessionUser.username, product, parseInt(quantity)]);
+        sqlcmd("INSERT INTO car (username,product,quantity,price) VALUES (?, ?, ?,?)", [sessionUser.username, product, parseInt(quantity), price]);
       }
       catch(error){
         `<html>
@@ -301,7 +295,6 @@ async function addtoCar(ctx) {
           </body>
         </html>`
       }
-      
     } 
     else {
       ctx.throw(404, 'not login yet!');
